@@ -1,13 +1,10 @@
-# Remotion project files - not needed for deployment, video is pre-rendered
+# Exclude all Remotion/build files from deployment
+# Only index.html and hero-bg.mp4 are needed
 src/
 out/
 node_modules/.remotion/
 remotion.config.ts
 tsconfig.json
-
-# Build artifacts
+package.json
+package-lock.json
 *.remotion/
-
-# Keep only static files for deployment
-!index.html
-!hero-bg.mp4
