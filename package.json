@@ -1,0 +1,22 @@
+{
+  "name": "aidesignlab",
+  "version": "1.0.0",
+  "description": "AI Design Lab — Practical AI design tutorials, tool reviews, and prompt templates.",
+  "main": "index.js",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render HeroBackground out/hero-background.mp4 --log=verbose",
+    "preview": "remotion preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/bundler": "^4.0.457",
+    "@remotion/cli": "^4.0.457",
+    "@remotion/player": "^4.0.457",
+    "framer-motion": "^12.38.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  }
+}
