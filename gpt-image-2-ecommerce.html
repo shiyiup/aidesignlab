@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 E-commerce Series — Text Rendering Finally Got Accurate — AI Design Lab</title>
+  <meta name="description" content="Tested 8 e-commerce scenarios with GPT Image 2. Text rendering on images is significantly better. Here's what actually works for e-commerce designers.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+    .score.red { color: var(--red); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">E-commerce</span>
+        <span>⏱️ 14 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 E-commerce Series: Text Rendering Finally Got Accurate</h1>
+      <p class="lead">After testing 8 e-commerce scenarios, here's my conclusion: GPT Image 2 is genuinely better at text-on-image than previous AI tools. But "99% accuracy" is still an overstatement.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Pain Point</h2>
+      <p>For e-commerce designers, one of the biggest frustrations is <strong>text on banners</strong>.</p>
+      <p>Using Midjourney for promotional images before — text was basically gibberish, or looked like "alien writing." Using Stable Diffusion with ControlNet + text rendering plugins —折腾半天 (fussed around for a long time), results were still average.</p>
+      <p>Then GPT Image 2 came out, claiming "99% accuracy in Chinese text rendering."</p>
+      <p>My first reaction: <strong>Really?</strong></p>
+      <blockquote>After 8 tests: GPT Image 2 is genuinely better at "text on e-commerce images" than previous AI tools. But "99% accuracy" is still an overstatement. It's more like 80-90%.</blockquote>
+
+      <h2>Case 01: Promotional Banner</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>618 Sale E-commerce Banner</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a 618 sale e-commerce banner. Size: 750x300px (mobile banner standard). Requirements: Main title: "618 Mid-Year Sale" (centered, super large, bold); Subtitle: "50% Off Storewide, Starts Tonight 8PM" (centered, medium); Background: red primary (#e74c3c), gold decorative elements; Visual elements: gift boxes, ribbons, countdown timer; Urgency: lively shopping atmosphere. Output: high-res, suitable for mobile display.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text: Accurate · Visual Quality: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Banner generated. Red background with gold 618 atmosphere correct. Main title "618 Mid-Year Sale" text rendered accurately, no gibberish. Subtitle also rendered correctly.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Countdown "03 Days 12 Hours" position slightly off, not at visual focal point. Gift boxes and ribbons feel like free stock素材 (materials) pasted together.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Promotional banner generation: GPT Image 2 produces "usable drafts." Text accuracy is a qualitative leap. Visual impact and material quality still need designer optimization.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Product Hero Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>Wireless Earbuds Product Photo</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a wireless earbuds product hero image. Requirements: Background: pure white (#ffffff); Product: in-ear wireless bluetooth earbuds, white version; Lighting: professional e-commerce product photography lighting with highlights and reflections; Angle: 45-degree top-down, showing earbuds and charging case; Quality: high-end, refined, like Apple.com product photos; No text, no watermark, no shadow (pure white background); Output: transparent background PNG, 1024x1024px.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Detail: Needs Professional Photo</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Earbuds generated. White background, 45-degree top-down angle, has "e-commerce product photo" feel.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Earbud detail precision insufficient — enlarged to 1024x1024, edges are slightly blurry. "Professional lighting" AI interpreted as "overall bright," not real product photography lighting setup. If placed alongside real photos on Taobao/JD product pages, AI-generated version would show.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Product hero image generation: <strong>good for "temporary placeholder" or "inspiration reference."</strong> For official e-commerce pages, still need real photography or high-quality 3D rendering.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Promotional Poster</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>"50% Off Limited Time" Poster with Model + Product</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "50% Off Limited Time" promotional poster. Size: 750x1000px (mobile vertical). Main title: "50% Off" (large, centered, eye-catching); Subtitle: "Only 3 Days, Miss It Wait a Year" (medium, creating urgency); Person: young Asian woman unboxing delivery, surprised expression; Product: cosmetics peeking from delivery box (lipstick, face cream); Colors: pink primary (#ff6b9d), female shopping atmosphere; Bottom: brand logo space reserved (blank, manually added later); Output: high-res, suitable for WeChat Moments/Xiaohongshu sharing.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text: Accurate · Atmosphere: Good</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Poster generated. Person, product, title all present. "50% Off" text rendered accurately. Pink atmosphere correct.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Promotional poster generation: <strong>good for "social media sharing images" (WeChat Moments, Xiaohongshu).</strong> Text accurate, visual atmosphere on point. For offline print posters, precision still not enough.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Lifestyle Scene Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>Coffee Cup on Nordic Desk</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a product lifestyle scene image. Subject: white ceramic coffee mug with simple blue line decoration on body. Scene: Nordic-style office desk. Desktop: light wood color, tidy. Background: white wall with potted plants (monstera). Lighting: natural light from left window, soft. Atmosphere: serene, quality feel, suitable for lifestyle e-commerce. View: eye-level, shallow depth of field (background slightly blurred). Output: 3:4 ratio, suitable for e-commerce detail page display.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Scene: Excellent · Atmosphere: Strong</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Scene image generated. Coffee mug, Nordic desk, potted plants — all present. Lighting and atmosphere feel good. Truly has "lifestyle e-commerce" refined sense.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Product lifestyle scene generation: <strong>one of the most practical GPT Image 2 e-commerce use cases.</strong> Quickly generates "product in life context" atmosphere images, much cheaper than real photography. For series images, need multiple generations to pick the best.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Model Outfit Swap</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>AI-Powered Model Outfit Change</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Reference this model photo. Change the model into a new summer collection dress. Requirements: Dress style: fresh, floral, suitable for summer; Color: white base with small florals (blue/green tones); Keep model's original pose, expression, lighting; Only change clothes, not background, hair, or face; Output: high-res, natural, not overdone.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-fail">LIMITED</span><span style="font-size:0.9rem;color:var(--text-2);">Precision: Low · Good for: Creative Exploration</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Outfit change effect generated. Model wearing floral dress.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Outfit swap: <strong>cannot achieve "precise partial editing" yet.</strong> GPT Image 2's inpainting capability still has a gap compared to professional image editing tools (like Photoshop's Generative Fill).</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Model outfit swap: <strong>good for "roughly change outfit" creative exploration, not for "precise outfit change."</strong></p>
+        </div>
+      </div>
+
+      <h2>Case 06: Multi-Product Layout</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>Skincare Set Display</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a skincare set display image with 3 products: (1) Essence (dropper bottle, transparent); (2) Face cream (round jar, white with gold lid); (3) Face mask (individual packaging, 5 pieces). Requirements: Layout: 3 products neatly arranged, top-down angle; Background: light pink (#fce4ec), gentle atmosphere; Lighting: soft, showing product texture; No text, no watermark; Output: square (1:1), suitable for e-commerce detail pages or social media.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Precision: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> All 3 products generated. Neatly arranged, top-down angle correct.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Multi-product layout: <strong>good for "set display inspiration reference."</strong> For official e-commerce pages, recommend real photography + post-production finishing.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: User Review Style Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>Lipstick Swatch "User Review" Style</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "user review" style lipstick swatch photo. Scene: natural lighting, hand swatch (lipstick applied on back of hand); Lipstick shade: nude/mauve (daily style); Atmosphere: real, not overdone, like an ordinary user taking photo to share; Quality: mobile photo quality (not professional photography); Lighting: natural light, slightly overexposed (realistic feel); No text, no watermark; Output: 4:3 ratio, suitable for Xiaohongshu/e-commerce platform review section.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Texture: Good · "Real" Feel: 80%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Swatch photo generated. Back of hand, lipstick, natural light — skin texture and quality hard to distinguish from real.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> User review style generation: <strong>good for "review section image reference,"</strong> or "what our product looks like when users review." Risk in using directly as "real user swatch photo."</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Brand Story Long Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>"From Coffee Bean to Cup" Brand Story</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a brand story long-image. Theme: "From Coffee Bean to a Cup of Coffee." Size: 750x2000px (mobile long-image). Content in 4 sections: (1) Coffee bean origin (Ethiopia, highland cultivation); (2) Roasting process (medium-light roast, preserving fruit notes); (3) Hand brew process (V60 pour-over, 92-degree water); (4) Finished product (a cup of coffee, latte art pattern). Requirements: Illustration style: hand-drawn feel, warm colors; Text: each section has 8-12 character title (accurately rendered); Narrative feel: like reading a brand story, not hard advertising; Output: long-image, suitable for blog or e-commerce detail page header.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Narrative: Good · Consistency: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Brand story long-image generated. All 4 sections present. Hand-drawn style correct.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Brand story long-image generation: <strong>GPT Image 2's most promising e-commerce direction.</strong> Quickly generates "narrative e-commerce content," much cheaper than hiring illustrators. But consistency control still needs optimization.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 can replace part of "junior e-commerce designer" work, but cannot replace "brand-aware, senior designers."</strong></p>
+        <p>Junior designer work — placing product images in scenes, adding promotional text, adjusting colors — GPT Image 2 can score 60-70%.</p>
+        <p>But what senior designers do — "brand sense," "narrative quality," "consistent visual language" — GPT Image 2 is still far behind.</p>
+        <p><strong>My recommendation:</strong> Use GPT Image 2 for rapid e-commerce image drafts and inspiration → Senior designer reviews brand sense and quality → If necessary, supplement key images with real photography or 3D rendering.</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Promotional Banner</td><td class="score green">4/5</td><td>Text accurate, good for drafts</td></tr>
+          <tr><td>02</td><td>Product Hero</td><td class="score yellow">3/5</td><td>Good for placeholders; real photos for official use</td></tr>
+          <tr><td>03</td><td>Promotional Poster</td><td class="score green">4/5</td><td>Social media sharing images, works well</td></tr>
+          <tr><td>04</td><td>Lifestyle Scene</td><td class="score green">5/5</td><td>Most practical scenario, low cost</td></tr>
+          <tr><td>05</td><td>Model Outfit Swap</td><td class="score red">2/5</td><td>Precision not enough, good for creative exploration</td></tr>
+          <tr><td>06</td><td>Multi-Product Layout</td><td class="score yellow">3/5</td><td>Inspiration reference; needs finishing for official use</td></tr>
+          <tr><td>07</td><td>Review Style</td><td class="score yellow">3/5</td><td>Simulates user reviews; don't use as real photos</td></tr>
+          <tr><td>08</td><td>Brand Story</td><td class="score green">4/5</td><td>Most promising direction, worth deeper exploration</td></tr>
+        </tbody>
+      </table>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-infographic.html" class="next-article-title">GPT Image 2 Infographic Series — Data Visualization Without Asking Others</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

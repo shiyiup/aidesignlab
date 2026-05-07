@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Blog Graphics Series — Stop Relying on Stock Photos — AI Design Lab</title>
+  <meta name="description" content="Tested 8 blog graphics scenarios with GPT Image 2. The biggest value isn't 'looking good' — it's accurately conveying your article's message visually.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Blog Graphics</span>
+        <span>⏱️ 14 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Blog Graphics Series: Stop Relying on Stock Photos</h1>
+      <p class="lead">After running 8 blog graphics tests, here's my conclusion: GPT Image 2's biggest value isn't "looking good" — it's accurately conveying your article's message visually.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Pain Point</h2>
+      <p>Running a blog for months, the most painful thing isn't writing — it's <strong>finding the right images</strong>.</p>
+      <p>You finish writing, feeling great. Then you open a search engine — "AI design blog image high-res no copyright" — scroll through 50 pages, and everything is either ugly, watermarked, or clearly from a free stock library.</p>
+      <p>So when I found GPT Image 2 could "generate images matching your article's topic," my first thought was: <strong>Finally, I can make my own.</strong></p>
+      <blockquote>The biggest value of AI-generated blog graphics isn't "looking good" — it's "accurately conveying your article's message." Stock photos from the web often barely relate to your content. AI-generated images are a visual extension of your article's viewpoint.</blockquote>
+
+      <h2>Case 01: Cover Image Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>Blog Cover Image — "AI Design Tools"</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a blog cover image about "AI design tools". Theme: AI is changing how designers work. Visual: a designer in dialogue with AI, screen showing design mockups and code. Style: modern, tech-forward but not cold. Colors: blue primary #1890ff, orange accent #fa8c16. Composition: horizontal 16:9, subject left, article title text space right. Quality: professional, suitable for tech blog. Resolution: 2000x900px.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Detail: Needs Work</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Cover generated. Designer at computer, screen with UI mockups and code, AI dialogue bubbles nearby. Colors match requirements. Right side blank for title text.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Designer figure feels templated — like a free stock photo person. Screen "mockups and code" — look closer and the code is garbled, mockups are blurry. Enlarge to phone screen and details reveal themselves.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Best for: <strong>concept-type covers</strong> (AI era, design trends). For covers needing real product screenshots or code, manual work still needed.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: In-Article Illustration</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>Designer Workflow Illustration</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an illustration of "designer workflow" for a blog article body. Content: show a designer's day from "receiving requirements" to "delivering design work". Style: flat illustration style, similar to popular blog illustrations. Colors: soft, don't compete with body text. Composition: horizontal wide image (suitable for blog body width). Details: include laptop, design software interface, coffee cup, sticky notes. Atmosphere: warm, organized.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Mood: Excellent · Text Rendering: Limited</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Horizontal wide image generated. Several work scenes with laptop, coffee cup, sticky notes. Flat illustration style with soft colors — doesn't distract from body text.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Text on sticky notes is garbled — AI still can't render precise readable text in illustrations. Scenes feel somewhat disconnected — not a "smooth day" flow but "scenes pasted together."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> In-article illustrations: <strong>GPT Image 2 performs better than cover images</strong>. Body illustrations don't need "precise specific information," just atmosphere and readability. AI-generated illustrations already meet blog publication standards.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Section Divider Elements</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>Blog Article Section Divider</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a section divider element for a blog article. Function: separate two article sections. Style: minimalist, geometric, suitable for tech blog. Colors: primary #1890ff, transparent background. Size: 750px width (blog body width), 30px height. Design: centered symmetrical pattern, not complex, but with design feel. Output: transparent background PNG.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Design: Good · Edge Quality: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Divider element generated. Geometric, minimalist, transparent background included.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Transparent background edge quality is average — fuzzy edges when enlarged. For high-precision needs (million-follower accounts), may need Photoshop edge fix.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Section divider generation: <strong>one of the most practical blog graphics use cases for GPT Image 2</strong>. Doesn't need precise information delivery — just look good and consistent. AI can batch generate 10 styles; pick your favorite.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Series-Consistent Covers</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>AI Tool Review Series Covers (3 Articles)</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate 3 cover images for an "AI Tool Review" article series. Requirements: unified style (modern tech feel, unified color scheme #1890ff primary, #52c41a accent); unified composition (subject centered, white space for title); 3 covers correspond to: (1) ChatGPT review, (2) Claude review, (3) GPT Image 2 review. Each cover's visual subject should be distinguishable (e.g., ChatGPT uses chat bubbles, Claude uses documents, GPT Image 2 uses images) but overall must look like "one set."</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Series Feel: 70-80% · Precision: Needs Work</span></div>
+          <p class="case-notes"><strong>What worked:</strong> All 3 covers generated. Colors unified, composition follows "centered + title space."</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Consistency control problems appear again. 3 covers have similar "modern tech feel" but details differ. ChatGPT cover's "chat bubble" texture doesn't perfectly match Claude cover's "document" texture.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Series-consistent cover generation: <strong>GPT Image 2 achieves 70-80%.</strong> For extremely high series consistency needs (paid newsletter covers), use AI for inspiration then manually unify in Figma.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Quote Card Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>Designer Quote Card Image</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a quote card image. Content: "Design is not about making things look good — it's about solving problems." — Kenya Hara. Style: minimalist, designed, suitable for blog body insertion. Colors: cream background #fefce8, dark text #262626. Typography: quotation marks and signature should have design treatment, not blunt. Size: 750px width, 400px height. Output: high-res, mobile-friendly.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text Rendering: Excellent · Typography: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Quote card generated. "Design is not about making things look good..." text rendered correctly.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Kenya Hara" — text rendered correctly but font isn't Hara's typical minimalist style. Quotation mark visual treatment feels templated — like Canva default template.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Quote card generation: <strong>greatest advantage is "accurate text rendering."</strong> Previously, generating images with text using Midjourney had very low success rate. GPT Image 2 achieves 70-80% accuracy. If font requirements aren't extreme, quote cards can be directly AI-generated.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Info Long-Image Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>2026 Designer Survival Guide Summary Image</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an info summary long-image with these points: Title: 2026 Designer Survival Guide. Points: (1) AI tools are assistants, not replacements; (2) Designers who master Vibe Coding have 30% salary premium; (3) Brand design ability, AI still can't learn; (4) Continuous learning is the only moat. Style: modern, infographic feel. Colors: professional, suitable for designer audience. Layout: clear bullet points, each with small icon. Size: 750px width, ~1200px height. Output: high-res, mobile-friendly.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Icon Consistency: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Info long-image generated. All 4 points with small icons.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Small icon styles not entirely consistent (some flat, some slightly 3D). If you want this in an article, may need Photoshop to fix icon consistency.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Info long-image generation: <strong>good for "article summary images" or "shareable images."</strong> Not "dump text into AI and get finished image." My recommended flow: use GPT Image 2 for rough layout → refine text and icons in Figma → output final long-image.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Meme-Style Graphics</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>Designer Life Emoji Pack</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "designer daily life" emoji pack, 6 emojis: (1) "8th revision — client says 'let's use the first version'" (frustrated face); (2) "Simple requirement, I don't care how to implement it" (shrug); (3) "Got it, will change right away" (fake smile); (4) "This color, a bit brighter / a bit darker" (speechless); (5) Designer's weekend (holding laptop in cafe); (6) Finally off work (running away). Style: cute, exaggerated, suitable for WeChat chat. Size: each emoji 240x240px. Output: 6 emojis arranged on one image for preview.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · "Meme" Feel: Not Perfect</span></div>
+          <p class="case-notes"><strong>What worked:</strong> All 6 emojis generated. Topics like "8th revision," "simple requirement," "will change right away" — relatable for designers.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Exaggerated" feel isn't strong enough — more like "illustrations with expressions" rather than "real emoji packs." If you put these on WeChat emoji store, quality isn't enough compared to viral ones.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Emoji generation: <strong>good for "funny article illustrations,"</strong> not for "downloadable emoji packs." WeChat emoji packs have strict size, format, transparent background requirements — AI can't achieve this precision yet.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Follow/Subscribe Guide Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>Blog Article Subscribe Guide</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a blog subscribe/follow guide image. Content: Left side: QR code area (left blank, manually added later). Right side: "Follow me for more AI design insights" (text). Arrow pointing to QR code area. Colors: warm, compelling (#1890ff primary, #fa8c16 accent). Style: minimalist, not flashy, text stands out. Size: 750px width, 200px height. Output: transparent background PNG (QR code area left blank).</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Excellent · Blank Area: Correct</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Guide image generated. Arrow, text, layout all correct. "Transparent background PNG" — AI understood real transparency. "QR code area left blank" — AI achieved this requirement.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Subscribe guide generation: <strong>AI generates the layout, human adds the QR code.</strong> Very practical workflow.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 can't fully replace the traditional "find image + Photoshop" workflow, but it can relieve "image anxiety" by 60-70%.</strong></p>
+        <p>Previously, after writing an article you still spent 30 minutes finding images, adjusting sizes, removing watermarks. Now, after writing, spend 5 minutes writing a prompt, AI generates 4 cover options, pick the best, tweak slightly — publish.</p>
+        <p><strong>My recommended workflow:</strong> Article written → Use GPT Image 2 to generate 4 image options → Pick the best → If details need fixing, micro-adjust in Figma/PS → Publish.</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Cover Image</td><td class="score green">4/5</td><td>Concept covers directly usable; specific products need editing</td></tr>
+          <tr><td>02</td><td>In-Article Illustration</td><td class="score green">5/5</td><td>Most suitable for AI generation, atmosphere is spot-on</td></tr>
+          <tr><td>03</td><td>Section Divider</td><td class="score green">5/5</td><td>Very practical, batch generate and pick best</td></tr>
+          <tr><td>04</td><td>Series Covers</td><td class="score yellow">3/5</td><td>Achieves 70-80%, extreme series needs manual work</td></tr>
+          <tr><td>05</td><td>Quote Card</td><td class="score green">4/5</td><td>Text is accurate, can be used directly</td></tr>
+          <tr><td>06</td><td>Info Long-Image</td><td class="score green">4/5</td><td>AI drafts initial version, Figma optimizes final</td></tr>
+          <tr><td>07</td><td>Meme Graphics</td><td class="score yellow">3/5</td><td>Good for article illustrations, not downloadable packs</td></tr>
+          <tr><td>08</td><td>Subscribe Guide</td><td class="score green">4/5</td><td>AI generates layout, human adds QR code</td></tr>
+        </tbody>
+      </table>
+
+      <h2>My Honest Recommendation</h2>
+      <p><strong>It can't fully replace traditional workflows, but relieves "image anxiety" by 60-70%.</strong></p>
+      <p>For high-frequency content creators, this time difference has enormous value.</p>
+      <blockquote>Article written → GPT Image 2 generates 4 image options → Pick the best → If details need fixing, micro-adjust in Figma/PS → Publish.</blockquote>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-ecommerce.html" class="next-article-title">GPT Image 2 E-commerce Series — Text Rendering Finally Got Accurate</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

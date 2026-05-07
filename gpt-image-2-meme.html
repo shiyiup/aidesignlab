@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Meme & Style Transfer Series — Finally, Create Your Own Memes — AI Design Lab</title>
+  <meta name="description" content="Tested 8 meme and style transfer scenarios with GPT Image 2. Its biggest value is lowering the barrier for ordinary people to create viral visual content. Here's the full review.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+    .score.red { color: var(--red); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .series-summary { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .series-summary h3 { color: var(--accent-2); font-size: 1.25rem; margin-bottom: 1.5rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Meme &amp; Style</span>
+        <span>⏱️ 15 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Meme & Style Transfer: Finally, Create Your Own Memes</h1>
+      <p class="lead">After 8 meme and style transfer tests, here's my conclusion: its biggest value is lowering the barrier for ordinary people to create viral visual content. This is the final article in the 8-article series.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Trend</h2>
+      <p>What's been most noticeable on social media timelines over the past 6 months?</p>
+      <p>Not "AI is so powerful" — but <strong>AI-generated memes are everywhere.</strong></p>
+      <p>In friend group chats, family morning message groups, colleague overtime complaint threads — before, everyone had to go online to find images, add text, remove watermarks,折腾半小时 (fuss for half an hour). Now — one sentence, one minute, memes with your personal style included.</p>
+      <p>This is the final article in my 8-article GPT Image 2 series. After 64 tested cases across 8 categories, let me give you the full picture.</p>
+      <blockquote>GPT Image 2 for memes and style transfer: its biggest value isn't "drawing well," it's lowering the barrier for ordinary people to create viral visual content.</blockquote>
+
+      <h2>Case 01: Meme Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>"Monday Morning Worker" Meme</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "Monday morning worker" funny meme. Content: Person with head on desk, drool on keyboard; Text: (top, large) "Monday morning, spirit already off work"; Style: funny, exaggerated, like memes circulating in WeChat groups; Colors: don't care, even a bit "earthy"; Output: 9:16 vertical, suitable for WeChat chat sending.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Meme Feel: 60-70%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Meme generated. Content as requested — head on desk with drool, top text present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Spirit already off work" text rendered correctly but font ordinary — not that "rough meme font" feel. Overall composition slightly too clean — real memes usually have "compressed blurry" feel, AI-generated too HD, lacking that flavor.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Meme generation: GPT Image 2 achieves 60-70% — can express meaning but not yet "truly viral meme texture." For "spreading through WeChat groups" memes, may need some "roughness" post-processing.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Emoji Pack Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>"Designer Daily Life" Emoji Pack</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "designer daily life" emoji pack, 6 emojis: (1) "8th revision, client says 'let's use first version'" (frustrated face); (2) "Simple requirement, don't care how to implement" (shrug); (3) "Got it, will change right away" (fake smile); (4) "This color, a bit brighter / a bit darker" (speechless); (5) Designer's weekend (holding laptop in cafe); (6) Finally off work (running away). Style: cute, exaggerated, suitable for WeChat chat. Size: each emoji 240x240px. Output: 6 emojis on one image for preview.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Great · Viral Feel: Needs Work</span></div>
+          <p class="case-notes"><strong>What worked:</strong> All 6 emojis generated. Designer pain points "8th revision," "simple requirement," "will change" — AI did get these.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Cute, exaggerated" — AI made "cartoon style," not real "emoji pack style" — real emoji packs usually have "meme-style fonts" and "exaggerated distorted" expressions. Compare with viral ones on WeChat, this lacks "soul."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Emoji direction: <strong>GPT Image 2 can do "personalized emoji packs" (generate exclusive emojis from your portrait), but "viral-grade emoji packs" need more precise meme culture understanding.</strong></p>
+        </div>
+      </div>
+
+      <h2>Case 03: Photo to Studio Ghibli Style</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>Normal Photo to Ghibli Style</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Reference this photo, convert it to Studio Ghibli (Miyazaki animation) style. Requirements: Colors: Ghibli's signature fresh, natural tones; Sky: Ghibli-style clouds (cotton candy); People (if any): big eyes, simple facial features; Lighting: soft 2D animation lighting, not 3D; Don't completely redraw, preserve original photo composition and element positions.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Style Transfer: Amazing · Precision: 80%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Ghibli-style transfer — <strong>most stunning result in these 8 tests.</strong> Sky really became cotton candy clouds, colors fresh, big eyes, simple facial features — all achieved.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Preserve original composition" — AI didn't fully achieve. It "recreated," not strict "style transfer." For "convert my photo to Ghibli-style poster," effect is good. For "preserve every detail position for precise style transfer," GPT Image 2 currently can't achieve this precision.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Photo to Ghibli style: <strong>one of GPT Image 2's most worth exploring directions.</strong> Ghibli style recognition and transfer effects currently can achieve "posting on Moments gets compliments" level.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Photo to Oil Painting (Van Gogh/Monet)</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>Landscape to Van Gogh Oil Painting</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Reference this landscape photo, convert it to Van Gogh oil painting style. Requirements: Brushwork: thick impasto, obvious oil paint texture; Colors: Van Gogh's common blue, yellow, green, strong contrast; Sky: swirling brushstrokes (like "Starry Night"); Not simple filter addition but genuine "redraw in Van Gogh style."</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Style Feel: Good · Art Precision: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Van Gogh style transfer also quite good. Brushwork texture, color contrast, swirling sky — "Van Gogh feel" visible.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Not simple filter" — AI still somewhat like "smart filter" — understood as "add Van Gogh-style colors and brushwork," not truly "redraw by Van Gogh method." For art lovers, AI-generated "oil painting style" detail precision not as good as real oil paintings — but usable for "social media illustrations."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Photo to oil painting: <strong>good for "artistic illustrations" (WeChat Moments, Xiaohongshu). Definitely not for art collection level, but "giving ordinary photos an artistic touch," AI does well.</strong></p>
+        </div>
+      </div>
+
+      <h2>Case 05: Fortune Telling / Palm Reading</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>AI-Powered Palm Reading</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">I send my palm photo, you analyze: Life line (length, depth, forks); Wisdom line (length, direction); Heart line (clarity); Career line (rising trend). Then generate a warm, encouraging "palm reading report image." Include: palm line annotation image + text analysis (under 100 words). Style: mystical feel but not scary, with warmth.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Fun Factor: High · Accuracy: 0%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> This play: <strong>most fun and most "mysterious" in these 8 tests.</strong> AI does "analyze" your palm photo — annotating life line, wisdom line, heart line, then generating analysis report in that "palm reading master's gentle tone."</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Obvious problem: <strong>AI isn't really "reading palms" — it's "generating something that looks like a palm reading report."</strong> As for accuracy, completely made up. If you really believe AI palm reading and make life decisions... I can only say, bold.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Palm reading/fortune telling: <strong>pure entertainment.</strong> GPT Image 2 generates "palm reading reports that look convincing" but between science and mysticism, I recommend choosing science.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Old Photo Restoration + Colorization</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>Black & White to Colorized Vintage Photo</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">This is a black and white old photo. Please: (1) Repair photo damage, scratches, blurriness; (2) Colorize (restore according to 1950-1960s authentic colors); (3) Keep person's expression and features natural, don't redraw into "AI face"; (4) Output a restored color old photo, with vintage feel but clear. Requirement: after restoration don't make it "too new," retain old photo texture.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Restoration: Good · Emotional Value: High</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Old photo restoration + colorization, effect also quite good. Damage, scratches repaired, colorization roughly matching 1950-1960s color feel.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Don't redraw into AI face" — AI didn't fully achieve. Restored faces somewhat have "AI-generated face common feel," not like real old photos. If placed in family album alongside real old photos, you can tell "this is AI-restored."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Old photo restoration + colorization: <strong>good for "family memory digitalization" warm scenario.</strong> Can't achieve 100% restoration but for "giving old photos color again," AI achieves "touching family members" level.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Real Person to Anime Character</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>Real Photo to Anime Style Avatar</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Reference this real photo, convert to Japanese anime style. Requirements: Preserve original photo's person features (face shape, hairstyle, expression); Convert to anime style: big eyes, simple facial features, clear outlines; Colors: common anime fresh tones (not dark style); Background: can simplify to common anime solid or gradient background; Output: square, suitable for social media avatar.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Anime Feel: Good · Feature Retention: 70%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Real to anime, effect also quite good. Big eyes, simple facial features, clear outlines — Japanese anime feel present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Preserve person features" — AI achieved halfway. Face shape may be preserved but eyes and expression become "anime-ized." For "you and family members can immediately recognize" anime character, currently AI not precise enough for "high-fidelity feature preservation."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Real to anime: <strong>good for "personal avatar customization" (convert your photo to anime style for WeChat avatar). For "high-fidelity feature preservation" illustrations, recommend finding professional artists.</strong></p>
+        </div>
+      </div>
+
+      <h2>Case 08: Fake Chat Record Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>WeChat Chat Record Screenshot Generator</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a WeChat group chat record screenshot (fake). Dialogue: Xiao Ming: "Everyone, overtime today?" Me: "No, project done, preparing to quit." Xiao Hong: "Hard workers keep going, I'm leaving first." Xiao Ming: (sent a "slacking" meme). Me: "See you tomorrow, working spirit never dies." Requirements: Style: WeChat group chat interface, iOS version; Avatars: use default avatars; Timestamp: today 3:24 PM; Style: convincingly fake, like real chat record screenshot; Output: phone screenshot ratio (9:16), suitable for WeChat Moments joke posting.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Realism: Not Convincing</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Fake chat record generated. iOS WeChat interface, avatars, timestamps — roughly present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Convincingly fake" — AI understood as "generate image that looks like chat record" but detail precision not enough. Timestamp font, avatar style — look closely differ from real WeChat. For "joking post to Moments," people who know may immediately spot "this is AI-generated fake chat record."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Fake chat record generation: <strong>good for "sarcasm/joke illustrations."</strong> For "deceiving people in groups," currently precision not enough.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2's biggest value isn't generating professional content, but enabling ordinary people to create interesting visual content.</strong></p>
+        <p>Before, making a meme required finding images, adding text, adjusting colors, removing watermarks. Now, spend 30 seconds writing a prompt, see 4 options in 1 minute.</p>
+        <p>This lowered barrier has enormous significance for "ordinary people wanting to participate in visual creation."</p>
+        <p><strong>My recommended workflow:</strong> Clarify the meme/style you want → Write clear prompt (refer to prompts above) → Generate multiple versions, pick best → For social media posts, can add some "roughness" post-processing (like Meitu filter).</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Meme Generation</td><td class="score green">3/5</td><td>WeChat chat illustrations, viral texture needs post-processing</td></tr>
+          <tr><td>02</td><td>Emoji Pack</td><td class="score green">4/5</td><td>Personalized emoji packs, viral needs optimization</td></tr>
+          <tr><td>03</td><td>Photo to Ghibli</td><td class="score green">5/5</td><td>Most worth exploring direction, stunning effect</td></tr>
+          <tr><td>04</td><td>Photo to Oil Painting</td><td class="score green">4/5</td><td>Artistic illustrations, good for social sharing</td></tr>
+          <tr><td>05</td><td>Palm Reading</td><td class="score red">2/5</td><td>Pure entertainment, don't make decisions based on it</td></tr>
+          <tr><td>06</td><td>Old Photo Restoration</td><td class="score green">4/5</td><td>Family memory digitalization, warm scenario</td></tr>
+          <tr><td>07</td><td>Real to Anime</td><td class="score green">4/5</td><td>Personal avatar customization, feature retention needs optimization</td></tr>
+          <tr><td>08</td><td>Fake Chat Records</td><td class="score yellow">3/5</td><td>Joke illustrations, not convincing enough to deceive</td></tr>
+        </tbody>
+      </table>
+
+      <div class="series-summary">
+        <h3>8-Article Series Summary</h3>
+        <p>From UI generation to meme style transfer, 64 tested cases across 8 categories.</p>
+        <p><strong>Core conclusion is only one:</strong></p>
+        <blockquote><strong>GPT Image 2 isn't here to replace designers, but to lower the "visual creation barrier."</strong><br><br>What only designers could do before, now ordinary people can also produce "usable" visual content.<br><br>But to make "good," "precise," "consistent" visual content — designer value actually increases.</blockquote>
+        <p><strong>Series complete.</strong></p>
+        <p>64 prompts, 8 articles, all here. If you use these prompts to generate interesting content, remember to share with me.</p>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

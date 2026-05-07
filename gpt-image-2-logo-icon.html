@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Logo & Icon Series — Can AI Design Your Brand? — AI Design Lab</title>
+  <meta name="description" content="Tested 8 logo and icon generation scenarios with GPT Image 2. Here's the honest truth: AI can explore directions, but consistency is still the weak point.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28;
+      --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0;
+      --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa;
+      --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171;
+      --radius: 14px; --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta { background: var(--accent); color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600 !important; font-size: 0.875rem !important; transition: transform 0.2s, box-shadow 0.2s !important; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(124,58,237,0.25); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; transition: color 0.2s; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body h3 { font-size: 1.25rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--text); }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score { font-weight: 700; }
+    .score.green { color: var(--green); }
+    .score.yellow { color: var(--yellow); }
+    .score.red { color: var(--red); }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+    .verdict-box p:last-child { margin-bottom: 0; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Logo &amp; Icon</span>
+        <span>⏱️ 15 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Logo & Icon Series: Can AI Actually Design Your Brand?</h1>
+      <p class="lead">After 8 tests — from line icons to brand logos to icon set consistency — here's my honest conclusion: AI generates usable quality, but consistency control is still a hard limit.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>Why This Matters</h2>
+      <p>After years of design work, icon generation has always been awkward territory. You need dozens of icons in a project: icon libraries give you inconsistent styles, hiring illustrators costs money, and drawing them yourself takes too much time.</p>
+      <p>So when GPT Image 2 started shipping with "accurate text rendering" and "better comprehension," my first thought was: <strong>Can it design icons for me?</strong></p>
+      <blockquote>I tested 8 scenarios. The verdict: AI generates usable icons, but consistency control across multiple icons is still its biggest weakness.</blockquote>
+
+      <h2>Case 01: Line Icon Generation</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 01 / 08</div>
+          <h3>Line Icon — "Settings" Function</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a "Settings" line icon with 2px stroke weight, rounded line caps, designed within a 24x24px grid, clean modern minimalist style, transparent background PNG</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Stroke: Good · Shape: Acceptable · Grid: Partial</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The gear icon appeared. Stroke is roughly 2px with rounded corners.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The 8 gear teeth have slight asymmetry — visible to the naked eye. Some strokes are thicker than others. Strict 24px grid alignment isn't pixel-perfect yet.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Single icons: GPT Image 2 delivers "usable" results. For strict pixel-perfect icon libraries, manual adjustment in Figma is still needed.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Filled Icon Set Generation</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 02 / 08</div>
+          <h3>E-commerce App Bottom Navigation (5 Icons)</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a set of 5 e-commerce app bottom navigation icons: Home, Categories, Cart, Favorites, Profile. Style: filled icons (not outlined). Primary color #ff6b35, inactive state gray #ccc. All 5 icons must have consistent visual weight. Displayed on one canvas.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Consistency: 60-70% · Recognizability: Good</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All 5 icons generated. Home (house), Categories (grid), Cart, Favorites (star), Profile (person) — all recognizable.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Visual weight consistency is the problem here. The "Home" icon feels heavier than "Cart." Corner radius varies slightly across icons. Enlarged to 64x64px, detail precision differs.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> For icons that "look like they belong to the same set," GPT Image 2 scores 60-70%. For pixel-level professional icon libraries, Figma manual adjustment is still required.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Brand Logo Generation</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 03 / 08</div>
+          <h3>AI Design Tool Company Logo</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a brand logo for an AI design tool company called "PixelMind". Tech-forward, modern, minimalist. Colors: blue primary #1890ff, green accent #52c41a. Concept: combine "pixel" and "brain." Show logo plus 4 application scenarios: website header, app icon, business card, t-shirt print.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Scenarios: Good · Format: Raster Only</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> Logo appeared with pixel-brain concept. Lettering has design appeal. All 4 application scenarios (website, app icon, card, t-shirt) arranged nicely.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Generated logo is a raster image, not vector. Enlarge to poster size and quality degrades. "Tech feel" interpreted as blue gradient + glow effects — somewhat templated. Color calibration inconsistent across the 4 scenarios.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Best use: <strong>logo concept exploration.</strong> For final delivery logos, redraw as vector based on AI-generated direction.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Icon Set Consistency Test</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 04 / 08</div>
+          <h3>Seasonal Icon Set (Spring/Summer/Autumn/Winter)</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a "Four Seasons" icon set, 4 icons: Spring (sprout), Summer (sun), Autumn (falling leaf), Winter (snowflake). Strictly unified visual language across all 4. Each uses seasonal representative colors: Spring (green), Summer (red/orange), Autumn (yellow/brown), Winter (blue/white). Stroke weight, corner radius, and detail density must be identical. Arranged on one canvas.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Consistency: Weak · Best for: Concept Exploration</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All 4 seasonal icons generated. Representativeness correct (sprout, sun, leaf, snowflake).</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Consistency problems are most obvious here. "Spring" sprout has thinner lines; "Summer" sun has noticeably thicker strokes. Detail density inconsistent — sun has ray details, snowflake has crystal details, but sprout is simpler. Colors differ in saturation and brightness.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> This is GPT Image 2's biggest weakness: <strong>generates single good images, struggles with strictly consistent multiple images.</strong> For icon libraries, use AI for inspiration, then unify in Figma components.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Multi-Style Comparison</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 05 / 08</div>
+          <h3>Same Icon, 4 Different Styles</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a "home" icon in 4 different styles: (1) Line icon, 2px stroke, rounded; (2) Filled icon, same shape as line version; (3) Hand-drawn illustration style, childlike feel, warm and imprecise; (4) 3D isometric illustration, soft shadows, rounded form. All on one canvas for comparison.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Style Switching: Good · "Same Icon": Not Precise</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All 4 styles generated. Line is lines, filled is solid, hand-drawn has childlike quality, 3D has isometric and shadows.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The "same home icon" requirement — AI interpreted as "4 different home icons in different styles" rather than "same icon with skin changed." Style transfer for strict re-skinning isn't precise enough yet.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Best for: exploring "what visual directions can this concept take." For "same icon, different skin," not precise enough.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Transparent Background Icon</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 06 / 08</div>
+          <h3>Camera Icon with Transparent PNG</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a transparent background "camera" icon. Style: filled icon, blue primary #1890ff. Details: camera lens has glossy reflection, shutter button has recessed feel. Size: 1024x1024px, high resolution.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">PNG: Generated · Edge Quality: Needs Fix</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> Camera icon generated. Transparent background available (downloadable as PNG from GPT Image 2 web version).</p>
+          <p class="case-notes"><strong>What didn't work:</strong> If icon edges have glow or shadow, transparent background leaves "fuzzy edges." Lens reflection feels templated, not carefully designed.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Transparent icons: achievable but <strong>edge precision is lower than professional tools</strong> (PS pen tool or Remove.bg). For project-level deliverables, fix edges in Photoshop after AI generation.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Logo Application Scenarios</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 07 / 08</div>
+          <h3>Logo on Business Card, T-shirt, Website Header</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Apply this logo to 3 real-world scenarios, arranged on one showcase canvas: (1) Business card — white card, logo top-left; (2) T-shirt — white t-shirt, logo on chest; (3) Website header — dark background #1a1a2e, logo left side. Logo color adaptation must be correct in each scenario, no distortion.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Scenarios: Good · Color Adaptation: Partial</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All 3 scenarios generated. Logo placed in designated positions.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "White" on business card vs "white" on t-shirt — subtle color difference (paper white vs fabric white). Logo on dark header might need inverted color treatment, but AI didn't adapt. T-shirt logo perspective and wrinkles look artificial.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Best for: <strong>brand proposal showcase images</strong> — showing clients "what the logo looks like in context." For actual production, manual adaptation per scenario still needed.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Grid-Compliant Icon Generation</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 08 / 08</div>
+          <h3>"Upload" Icon Strictly on 24x24px Grid</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design a "upload" function icon strictly following 24x24px grid specs: 24x24px canvas, 2px padding (actual icon area 20x20px). Style: 2px stroke, rounded caps. Shape: arrow pointing up, horizontal line below (representing upload/send to cloud). Alignment: strictly centered on grid center lines. Output: showcase image comparing grid + icon for inspection.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Semantics: Good · Grid Precision: Not Exact</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> Icon generated. "Upload" semantics correct (up arrow + horizontal line).</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Strict grid alignment" — AI understood the concept but wasn't precise. Arrow position not strictly centered. 2px padding not strictly followed. For developer handoff, "approximately aligned" isn't enough.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> For grid-compliant icon generation: <strong>AI achieves "looks like the spec" but not "pixel-perfect compliance."</strong> Design system icons still recommended in Figma.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>AI generates usable icon quality, but consistency across multiple icons is still its biggest weakness.</strong></p>
+        <p><strong>Best for:</strong> Logo concept exploration, icon style exploration, proposal showcase images.</p>
+        <p><strong>Not suitable for:</strong> Strictly consistent icon libraries, precise design system specs, project-level deliverables.</p>
+        <p><strong>My recommended workflow:</strong></p>
+        <p>Use GPT Image 2 for rapid direction exploration → Select the best → Redraw carefully in Figma → Use Figma components for consistency.</p>
+        <p>AI handles "0 to 1 inspiration"; humans handle "1 to 10 quality."</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead>
+          <tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td>Line Icon</td><td class="score green">3/5</td><td>Inspiration reference, final needs adjustment</td></tr>
+          <tr><td>02</td><td>Filled Icon Set</td><td class="score green">3/5</td><td>Low-stakes use; consistency needs manual work</td></tr>
+          <tr><td>03</td><td>Brand Logo</td><td class="score green">4/5</td><td>Logo concept exploration, highly recommended</td></tr>
+          <tr><td>04</td><td>Icon Consistency</td><td class="score red">2/5</td><td>Biggest weakness, not recommended as sole source</td></tr>
+          <tr><td>05</td><td>Multi-Style Comparison</td><td class="score green">4/5</td><td>Visual direction exploration, strongly recommended</td></tr>
+          <tr><td>06</td><td>Transparent BG Icon</td><td class="score green">3/5</td><td>Usable, edge precision needs PS fix</td></tr>
+          <tr><td>07</td><td>Application Scenarios</td><td class="score green">3/5</td><td>Brand proposal showcase, works well</td></tr>
+          <tr><td>08</td><td>Grid-Compliant Icon</td><td class="score red">2/5</td><td>Precision specs not achievable yet</td></tr>
+        </tbody>
+      </table>
+
+      <h2>My Honest Recommendation</h2>
+      <p><strong>What AI does well:</strong></p>
+      <p>Logo concept exploration (input keywords, get 10 directions in 1 minute). Icon style exploration (same concept, quickly see 4 visual directions). Proposal showcase images (logo in context for client presentation).</p>
+      <p><strong>What AI doesn't do well yet:</strong></p>
+      <p>Strictly consistent icon libraries. Precise design system compliance (grid, spacing, stroke — not pixel-level). Project-level deliverables (edge precision, vector format — still need human work).</p>
+      <blockquote>My workflow recommendation: Use GPT Image 2 for rapid icon direction exploration → Pick the best → Redraw manually in Figma → Use Figma components for consistency. AI handles inspiration; humans handle quality.</blockquote>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-blog-graphics.html" class="next-article-title">GPT Image 2 Blog Graphics Series — Stop Relying on Stock Photos</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

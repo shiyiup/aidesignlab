@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Portrait Series — Finally, No Need to Ask Others for Photos — AI Design Lab</title>
+  <meta name="description" content="Tested 8 portrait scenarios with GPT Image 2. Its biggest advantage isn't "looking like real photos" — it's "customizing to your requirements." Here's the honest review.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+    .score.red { color: var(--red); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Portrait</span>
+        <span>⏱️ 14 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Portrait Series: Finally, No Need to Ask Others for Photos</h1>
+      <p class="lead">After 8 portrait tests, here's my conclusion: GPT Image 2's biggest advantage isn't "looking like real photos" — it's "customizing to your requirements." What you want — "professional yet warm, not stiff" — a photo studio may not capture, but AI can debug repeatedly until you're satisfied.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Pain Point</h2>
+      <p>For personal branding on social media or in professional settings, what's most lacking?</p>
+      <p>Not writing skill, not perspective — <strong>a decent professional headshot</strong>.</p>
+      <p>You go to a photo studio for a set, get retouched, 800 yuan gone. You ask a friend to shoot, take 50 photos, can't find one usable. You search online for "professional headshot templates" — either too fake or watermarked.</p>
+      <p>So when I found GPT Image 2 could "generate professional headshots," my first thought was:</p>
+      <blockquote>Finally, I can create my own.</blockquote>
+
+      <h2>Case 01: Professional Headshot</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>Asian Female UI Designer Professional Headshot</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a professional headshot for an Asian female UI designer. Requirements: Age: 28-32; Expression: confident, warm smile (not fake smile); Background: blurred, cream gradient (#fefce8 to #f5e6d3); Lighting: natural light from left, soft; Outfit: simple white shirt, professional but not overly formal; Composition: shoulders up, centered; Style: professional headshot, suitable for LinkedIn, blog author bio; Output: square (1:1), high-res.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Natural Feel: 60-70%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Headshot generated. Asian female, white shirt, soft background — all as requested.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Warm smile" — AI generated but feels like "professional smile template" — the kind of "photo studio standard smile," not a natural laugh. Background blur slightly artificial — like phone portrait mode, not professional camera blur. Enlarge and eye detail shows "eye light" slightly fake — looks pasted on.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Professional headshot generation: GPT Image 2 achieves 60-70%. Better than free headshot generators, but not as good as professional photo studio retouching. Good for: blog author bio, LinkedIn, team intro pages — where precision requirements aren't extreme.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Casual Portrait</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>Designer in Cafe Casual Portrait</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a casual portrait. Scene: cafe, natural light, afternoon. Person: Asian male designer, 25-30 years old. State: focusing on laptop screen, holding coffee cup. Atmosphere: relaxed, enjoying work, not staged. Background: cafe wooden tables and chairs, potted plants, warm lighting. Style: life feel, like a photo a friend casually took. Output: 3:4 ratio, suitable for social media (Xiaohongshu, WeChat Moments).</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Atmosphere: Good · Detail: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Portrait generated. Cafe scene, wooden furniture, potted plants — atmosphere correct.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Focusing on screen" — AI did it but expression slightly stiff — like "asked to look at screen" not "truly focused." Coffee cup perspective slightly off. Wooden furniture texture feels "repetitive texture" fake — like tiled texture in 3D modeling.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Casual portrait generation: <strong>GPT Image 2's strength is "atmosphere," weakness is "detail precision."</strong> Good for Xiaohongshu travel posts (70-80% quality). For "print and hang on wall" refined portraits, still need real photography + retouching.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Artistic Style Portrait (Van Gogh)</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>Van Gogh Style Self-Portrait</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an artistic style portrait. Style: Van Gogh thick impasto oil painting style. Content: modern woman's self-portrait, but using Van Gogh's brushstrokes and colors. Requirements: Brushwork: obvious oil paint texture,颜料堆叠质感 (paint accumulation texture); Colors: Van Gogh's common blue, yellow, green, strong contrast; Lighting: not realistic lighting but emotional color expression; Background: Van Gogh-style starry sky or wheat field elements; Style transfer accuracy: should look like Van Gogh but not lose human features; Output: square, suitable for art merchandise (phone cases, canvas bags).</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Van Gogh Feel: Strong · Feature Preservation: Partial</span></div>
+          <p class="case-notes"><strong>What worked:</strong> This image, I paused for a moment — <strong>there really is a Van Gogh feel.</strong> Blue and yellow contrast, thick brushwork texture, starry sky elements — all achieved.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Not losing human features" — AI didn't fully achieve. Generated portrait doesn't show "modern woman's specific features," more like "Van Gogh style female." Compare with real Van Gogh self-portraits, AI-generated "Van Gogh style" feels like "Van Gogh style template" — like AI learned 100 Van Gogh paintings and "averaged" the result.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Artistic style portrait generation: <strong>GPT Image 2 can achieve "spiritual resemblance," but "formal resemblance" not precise enough.</strong> For "a headshot with Van Gogh feel," AI can generate. For "paint my cat in Van Gogh style," consistency control and detail precision not enough.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Historical Figure Portrait (Tang Dynasty)</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>Tang Dynasty Noblewoman</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a historical figure portrait. Person: Tang Dynasty noblewoman. Requirements: Clothing: Tang-style ruqun, qi xiong design, silk texture; Makeup: Tang Dynasty facial makeup (forehead yellow, flower decorative, slanted red, facial dots); Hairstyle: Tang noblewoman bun, flower decorations; Pose: holding round fan, slightly turned, elegant; Background: Tang palace or garden, gongbi painting style; Colors: Tang Dynasty preferred red, green, gold; Style: not photo-realistic but gongbi painting style historical restoration; Output: vertical, suitable for historical culture article illustrations.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Historical Feel: Good · Precision: Needs Expert Review</span></div>
+          <p class="case-notes"><strong>What worked:</strong> This image, historical and cultural feel correct. Ruqun, hair bun, round fan — Tang elements present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Gongbi painting style" — AI interpreted as "flat fill + outline," not real gongbi — real gongbi has thinner lines, layered color application. For history enthusiasts, "Tang Dynasty makeup" details slightly off — flower decorative position, slanted red shape differ from historical records.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Historical figure portrait generation: <strong>good for "historical culture article illustrations,"</strong> not for "historical academic research illustrations" — detail precision not precise enough.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: IP Character Design</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>AI Assistant IP Character Design</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Design an AI assistant IP character portrait. Requirements: Character: warm, intelligent, slightly humorous AI assistant; Form: rounded 3D image, not realistic human, but "character"; Colors: tech blue (#1890ff) + warm orange (#fa8c16), conveying "tech + warmth"; Expression: smile, curved eyes, approachable; Details: can have small Wi-Fi signal element on head indicating "online"; Style: 3D isometric rendering, soft shadows, rounded form; Use cases: app icon, blog avatar, product mascot; Output: transparent background PNG.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Character: Great · Edge Quality: Needs Fix</span></div>
+          <p class="case-notes"><strong>What worked:</strong> IP character generated. Rounded 3D form, tech blue + warm orange colors, Wi-Fi signal element — all as requested.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Transparent background PNG" — AI-generated image edge cutout not clean enough. If placing this IP on different backgrounds, may need Photoshop edge fix. 3D rendering lighting slightly artificial — not like real 3D rendering (C4D), more like "2D-drawn 3D feel."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> IP character design portrait generation: <strong>one of GPT Image 2's most practical portrait scenarios</strong> — because IP characters don't need "realistic look," just cute and recognizable. AI can quickly generate a dozen options, pick the best.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Emotional Expression Portrait</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>"Focused Work" Emotional Close-Up</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an emotional expression portrait. Emotion: focused, engaged, calm. Requirements: Composition: close-up, upper face + hands (hands typing or holding pen); Expression: slightly furrowed brow, focused eyes, light lip press; Lighting: Rembrandt lighting (facial triangle light), dramatic but not exaggerated; Tone: cool (#2c3e50 background), highlighting facial light; Atmosphere: focused, immersed, like solving a difficult problem; Style: portrait photography, not staged but "caught focused moment"; Output: square, suitable for article illustrations or poster subject.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Emotion: Strong · Lighting Precision: Partial</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Emotional expression on point — looking at this image, you can feel "focus."</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Rembrandt lighting" — AI somewhat understands, did "facial triangle light" but light texture not like real Rembrandt. "Caught focused moment" atmosphere AI did but somewhat like "staged candid" — model asked to "pretend to be caught," not truly candid.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Emotional expression portrait generation: <strong>GPT Image 2's strongest aspect is not "accurate light reproduction," but "conveying emotional atmosphere."</strong> For "let readers feel focus/warmth/power" illustrations, AI can generate. For "strict photography lighting," still need professional photographers.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Age Progression Portrait</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>Same Person Age 5 to 70</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an age progression portrait of the same person from childhood to old age. Person: same Asian male (maintain consistent facial features). Age stages: 5, 20, 35, 50, 70 years old. Requirements: Facial features consistent (same face shape, eyes, nose, just aging); 5 stages arranged on one image for comparison; Each stage labeled with age; Clothing changes with era (5yo: children's wear, 20yo: t-shirt, 35yo: dress shirt, 50yo: polo, 70yo: Tang suit); Style: realistic, not cartoon or exaggerated; Output: horizontal long-image.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-fail">FAIL</span><span style="font-size:0.9rem;color:var(--text-2);">Consistency: Very Low</span></div>
+          <p class="case-notes"><strong>What worked:</strong> 5 age stages generated. Clothing changes with era.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Biggest problem: <strong>"facial features consistent" — AI did not achieve.</strong> The 5 people look like "same race, same gender" but not "same person." This is AI portrait generation's long-standing problem — <strong>good at generating "one good-looking face," not "same face in different states."</strong></p>
+          <p class="case-notes"><strong>Conclusion:</strong> Age progression portrait generation: <strong>GPT Image 2 currently cannot do "strict consistency."</strong> For "same person young to old" series, after AI generation still need manual face alignment in Photoshop.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Lighting Portrait (Rembrandt)</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>Rembrandt Lighting Portrait</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a lighting portrait. Lighting: Rembrandt lighting. Requirements: Face: triangle light area between cheekbone and chin; Contrast: clear but natural transition (not harsh light); Background: dark (#1a1a1a), highlighting facial lighting; Expression: calm, neutral, not overshadowed by lighting; Texture: skin texture realistic, pores and fine lines visible (not over-retouched fake skin); Style: portrait photography, master-level lighting; Output: square, suitable for photography teaching illustrations.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Lighting Feel: Good · Precision: Not Master-Level</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Facial triangle light area AI did. Light and shadow contrast present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Rembrandt lighting" precision — AI didn't achieve. Real Rembrandt lighting has strictly regulated triangle light shape and position. AI-generated more like "one side bright, one side dark," not real Rembrandt. "Realistic skin texture" — AI somewhat understands. Generated portrait skin somewhat like "retouched skin," not "real pore-visible skin."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Lighting portrait generation: <strong>GPT Image 2 can achieve "roughly that kind of lighting feel," but not "strict photography lighting standards."</strong> For "quality portrait illustrations," AI can generate. For "photography teaching lighting demonstration images," still need professional photographers.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 cannot fully replace "professional portrait photography," but can solve "99% of ordinary people's portrait needs."</strong></p>
+        <p>Professional photographer-shot, retouched portraits — quality and precision AI hasn't reached yet. But <strong>most people don't need "poster-level portraits," just "reliable professional headshots," "atmospheric life photos," "creative IP characters"</strong> — GPT Image 2 can already achieve 70-80% on these.</p>
+        <p><strong>My recommended workflow:</strong> Clarify the "portrait type" you need → Write detailed prompts (age, expression, lighting, background, style) → AI generates 10 versions → Pick the best → If details need fixing, micro-adjust in Photoshop.</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Professional Headshot</td><td class="score green">4/5</td><td>Author bios, LinkedIn, team pages</td></tr>
+          <tr><td>02</td><td>Casual Portrait</td><td class="score green">3/5</td><td>Social media, lifestyle articles</td></tr>
+          <tr><td>03</td><td>Artistic Style</td><td class="score green">4/5</td><td>Art merchandise, creative article illustrations</td></tr>
+          <tr><td>04</td><td>Historical Figure</td><td class="score green">3/5</td><td>Historical culture article illustrations</td></tr>
+          <tr><td>05</td><td>IP Character Design</td><td class="score green">5/5</td><td>Most suitable! App icons, brand mascots</td></tr>
+          <tr><td>06</td><td>Emotional Expression</td><td class="score green">4/5</td><td>Article illustrations, poster subjects</td></tr>
+          <tr><td>07</td><td>Age Progression</td><td class="score red">2/5</td><td>Consistency not enough, needs manual help</td></tr>
+          <tr><td>08</td><td>Lighting Portrait</td><td class="score green">3/5</td><td>Atmosphere on point, precise lighting needs pro photography</td></tr>
+        </tbody>
+      </table>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-mockup.html" class="next-article-title">GPT Image 2 Mockup Series — Design Presentation Finally Has Hope</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

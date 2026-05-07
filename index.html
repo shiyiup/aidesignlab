@@ -240,6 +240,31 @@
       position: relative;
       overflow: hidden;
     }
+    .tool-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .tool-card:hover::before { opacity: 1; }
+    .article-btn-wrapper {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .article-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .article-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(124,58,237,0.3);
+      text-decoration: none;
+    }
     .tool-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -447,7 +472,7 @@
     <div class="nav-logo">aidesignlab.cc</div>
     <div class="nav-links">
       <a href="#tools">Tools</a>
-      <a href="#tutorials">Tutorials</a>
+      <a href="#articles">Articles</a>
       <a href="#prompts">Prompts</a>
       <a href="https://longyu2037.com" target="_blank">About</a>
       <a href="#newsletter" class="nav-cta">Subscribe</a>
@@ -622,6 +647,161 @@
     </div>
   </section>
 
+  <!-- ALL ARTICLES -->
+  <section class="section" id="articles">
+    <div class="reveal">
+      <div class="section-tag">Complete Series</div>
+      <h2 class="section-title">8 Deep-Dive Articles. Real Tests. Honest Scores.</h2>
+      <p class="section-sub">Each article tests 8 different scenarios. Prompts included. Ratings included. No fluff.</p>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">🎨</div>
+          <span class="tool-badge badge-hot">ARTICLE 1</span>
+        </div>
+        <h3>UI Generation</h3>
+        <p>Can AI generate production-ready UI designs? Mobile apps, dashboards, landing pages — tested and rated.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 4.2/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-ui-generation.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">🔷</div>
+          <span class="tool-badge badge-hot">ARTICLE 2</span>
+        </div>
+        <h3>Logo & Icon</h3>
+        <p>Logo design, app icons, brand marks — can GPT Image 2 handle brand identity work?</p>
+        <div class="rating">
+          <span class="star">★★★</span><span class="star empty">★★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 3.5/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-logo-icon.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">📊</div>
+          <span class="tool-badge badge-new">ARTICLE 3</span>
+        </div>
+        <h3>Blog Graphics</h3>
+        <p>Article thumbnails, social media visuals, content marketing imagery — essential for content creators.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 4.0/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-blog-graphics.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">🛒</div>
+          <span class="tool-badge badge-new">ARTICLE 4</span>
+        </div>
+        <h3>E-commerce</h3>
+        <p>Product banners, category images, promotional graphics — can AI power your online store?</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 4.0/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-ecommerce.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">📈</div>
+          <span class="tool-badge badge-guide">ARTICLE 5</span>
+        </div>
+        <h3>Infographic</h3>
+        <p>Data visualization, statistical charts, process diagrams — the acid test for AI design precision.</p>
+        <div class="rating">
+          <span class="star">★★★</span><span class="star empty">★★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 3.5/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-infographic.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">👤</div>
+          <span class="tool-badge badge-guide">ARTICLE 6</span>
+        </div>
+        <h3>Portrait Photography</h3>
+        <p>Professional headshots, lifestyle photos, diverse models — testing AI's photography capabilities.</p>
+        <div class="rating">
+          <span class="star">★★★</span><span class="star empty">★★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 3.5/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-portrait.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">📱</div>
+          <span class="tool-badge badge-guide">ARTICLE 7</span>
+        </div>
+        <h3>Mockup Generation</h3>
+        <p>Device mockups, scene compositions, portfolio presentation — make your work look professional.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 4.0/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-mockup.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">✨</div>
+          <span class="tool-badge badge-hot">ARTICLE 8</span>
+        </div>
+        <h3>Meme & Style Transfer</h3>
+        <p>The creative playground — artistic styles, meme formats, creative transformations. Pure creative gold.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>8 Test Cases</span>
+          <span>Avg: 4.5/5</span>
+        </div>
+        <div class="article-btn-wrapper">
+          <a href="gpt-image-2-meme.html" class="article-btn">Read Article →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PROMPTS -->
   <section class="section" id="prompts">
     <div class="reveal">
@@ -691,7 +871,7 @@
     <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
     <p>Designed with intention. Built with AI. Powered by human creativity.</p>
     <p style="margin-top:1rem;">
-      <a href="#tools">Tools</a> · <a href="#tutorials">Tutorials</a> · <a href="#prompts">Prompts</a> · <a href="https://longyu2037.com" target="_blank">About</a>
+      <a href="#tools">Tools</a> · <a href="#articles">Articles</a> · <a href="#prompts">Prompts</a> · <a href="https://longyu2037.com" target="_blank">About</a>
     </p>
   </footer>
 

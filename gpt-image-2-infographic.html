@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Infographic Series — Data Visualization Without Asking Others — AI Design Lab</title>
+  <meta name="description" content="Tested 8 infographic scenarios with GPT Image 2. The biggest advantage is speed and "doesn't look bad." But if you need precise data communication, manual verification is still needed.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Infographic</span>
+        <span>⏱️ 14 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Infographic Series: Data Visualization Without Asking Others</h1>
+      <p class="lead">After 8 infographic tests, here's my conclusion: GPT Image 2's biggest advantage is "fast" and "doesn't look bad." But for "precise data communication," manual verification is still needed.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Pain Point</h2>
+      <p>Consultants and data analysts often face this dilemma:</p>
+      <p>Boss says "make a chart with this data for the PPT," so you open Excel, insert a chart, and find — it looks ugly.</p>
+      <p>Then you open Canva, find a template, change the data, adjust colors,折腾一小时 (fuss for an hour).</p>
+      <p>When GPT Image 2 came out, my first thought was: <strong>Can it generate infographics directly?</strong></p>
+      <blockquote>GPT Image 2's biggest infographic advantage is "fast" and "doesn't look bad." But if you need "precise data communication," manual verification is still needed.</blockquote>
+
+      <h2>Case 01: Data Comparison Chart</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>AI Tool User Growth 2020-2025 Bar Chart</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a data comparison bar chart. Title: AI Tool User Growth 2020-2025 (Unit: 100M). Data: 2020: 120M, 2021: 250M, 2022: 480M, 2023: 830M, 2024: 1.56B, 2025: 2.8B (forecast). Requirements: Colors: gradient blue (#1890ff to #52c41a); Style: modern, clean, suitable for PPT insertion; Labels: each bar shows specific value above; Size: 16:9, high-res.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Visual: Good · Data Precision: Needs Verification</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Bar chart generated. 6 bars present, gradient blue correct. Values labeled above bars.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Value labels font slightly small — may be hard to read in PPT. "2020-2025" year labels slightly crowded. Gradient coloring achieved but somewhat conflicts with "modern clean" style — gradients can feel less professional.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Data comparison generation: GPT Image 2 achieves 60-70%. Good for "internal discussion charts," not for direct client proposals.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Flowchart Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>User Registration Flowchart</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "user registration flowchart." Steps: (1) Start (user clicks register); (2) Enter phone number; (3) Receive verification code (decision: code correct? — Yes: next; No: re-enter, loop); (4) Set password; (5) Select interest tags; (6) Complete registration (end). Requirements: Style: rounded rectangles (process steps), diamonds (decision nodes); Colors: blue (#1890ff), decision nodes orange (#fa8c16); Arrows: clearly labeled flow direction; Style: clean, professional, suitable for product documentation; Size: horizontal wide image, suitable for document insertion.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Structure: Good · Decision Arrows: Unclear</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Flowchart generated. All 6 steps drawn. Decision nodes (verification code correct?) using diamond shape.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Decision node's "yes/no" branches — arrow labels not clear enough. "Select interest tags" and "complete registration" arrow slightly off-position.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Flowchart generation: <strong>good for "flow discussion drafts."</strong> For product documentation for developers, recommend redrawing with professional tools (draw.io, Figma).</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Timeline Generation</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>AI Development History Timeline</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an "AI Development History" timeline. Timeline: 1950: Turing Test proposed; 1956: Dartmouth Conference, AI discipline born; 1997: IBM Deep Blue beats chess champion; 2012: AlexNet wins ImageNet, deep learning rises; 2016: AlphaGo beats Lee Sedol; 2022: ChatGPT released, LLM era begins; 2026: GPT Image 2 released, multimodal AI matures. Requirements: Style: horizontal timeline, events alternately above/below axis; Colors: tech blue (#1890ff), important nodes in red; Style: illustration feel, suitable for blog long-image; Size: horizontal wide (1200px width).</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Narrative: Good · Density: Crowded for Many Events</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Timeline generated. All 7 time nodes present, positions roughly correct.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "1950" and "1956" too close, labels crowded on timeline. "2026: GPT Image 2 released" — AI may not have understood; generated timeline, 2026 label slightly unclear. Illustration style somewhat templated.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Timeline generation: <strong>good for "popular science article illustrations."</strong> But if many time nodes (>10), AI layout tends to get messy.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Hierarchy Diagram</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>Internet Company Org Chart</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an "Internet Company Org Chart." Hierarchy: Top: CEO; Second level: CTO, CPO, COO; Third level (under CTO): Frontend team, Backend team, AI team, QA team; Third level (under CPO): UI design, User research, Data analysis; Third level (under COO): Marketing, Operations, Customer service. Requirements: Style: tree structure, clear hierarchy; Colors: top dark blue (#1a1a2e), middle blue (#1890ff), base light blue (#e6f7ff); Lines: clearly show reporting relationships; Style: professional, clean, suitable for company internal documents; Size: vertical long-image.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Structure: Good · Large Orgs: Crowded</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Org chart generated. All 5 levels drawn. Lines present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Third level" nodes too many — frontend, backend, AI, QA, UI, UR, data, marketing, ops, CS — 10 nodes crowded together. Lines' hierarchy relationships approximately correct but may confuse which node reports to which.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Hierarchy diagram generation: <strong>good for "small team org charts" (<20 people).</strong> For large organizations with many levels, AI-generated charts tend to cluster.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Pie Chart</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>Designer Work Time Distribution</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "Designer Work Time Distribution" pie chart. Data: Requirement communication: 15%; Inspiration exploration: 20%; Design execution: 40%; Revisions: 20%; Other: 5%. Requirements: Colors: 5 soft colors (not jarring); Labels: each sector shows name and percentage; Style: slight 3D effect; Style: modern, clean; Size: square, suitable for PPT insertion.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Proportions: Rough · Small Sectors: Hard to Read</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Pie chart generated. All 5 sectors present. Soft colors.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Other: 5%" sector too small, label text crowded and hard to read. 3D effect slightly artificial — not like professional chart tool 3D pie charts.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Pie chart generation: <strong>good for "rough proportion display."</strong> For precise "this sector is 15%, that one is 20%" communication, still need Excel or professional chart tools.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Comparison Table</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>GPT-4 vs Claude vs Gemini Comparison</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "GPT-4 vs Claude vs Gemini" feature comparison table. Comparison dimensions: Model size (parameter scale); Multilingual support; Code capability; Image generation; Price (API). Requirements: Style: table, 3 columns (GPT-4, Claude, Gemini); Colors: header dark blue (#1a1a2e), odd rows light gray (#fafafa), even rows white; Labels: each dimension's comparison shown with stars indicating strength; Style: professional, clear, suitable for report insertion; Size: horizontal, suitable for A4 print.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Format: Good · Data Accuracy: Check Required</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Comparison table generated. All 3 columns present. 5 comparison dimensions drawn.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Price (API)" dimension — AI may not know latest pricing, generated star comparison may be inaccurate. Table border thickness and professional color sense less than professional chart tools.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Comparison table generation: <strong>good for "informal comparison display."</strong> For rigorous competitive analysis reports, recommend generating table with professional tools then screenshot.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Step Guide Image</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>"How to Use AI to Generate UI" 6-Step Tutorial</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a "How to Use AI to Generate UI" 6-step tutorial illustration. Steps: (1) Prepare requirement description; (2) Select AI tool (GPT Image 2, Midjourney, etc.); (3) Write prompt (describe layout, colors, style); (4) Generate draft (AI outputs interface); (5) Human optimize (adjust details in Figma); (6) Deliver for use (to developer or client). Requirements: Style: each step a card with illustration; Colors: step cards gradient background (light blue to white); Arrows: clearly label step sequence; Style: modern, illustration feel, suitable for blog tutorials; Size: vertical long-image (suitable for mobile reading).</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Flow: Clear · Step Illustrations: Variable Quality</span></div>
+          <p class="case-notes"><strong>What worked:</strong> 6-step tutorial illustration generated. Each step a card with illustration.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Illustration quality inconsistent — step 1's illustration more refined, step 6's more simplified. Arrow style slightly fancy — not as clear as simple arrows.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Step guide generation: <strong>one of the most practical GPT Image 2 infographic scenarios.</strong> Because step-based content, readers care more about "flow" than "each illustration's precision." AI-generated step guides already meet blog publication standards.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: SWOT Analysis</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>"AI's Impact on UI Designers" SWOT</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate an "AI's Impact on UI Designers" SWOT analysis diagram. Four quadrants: Strengths: fast inspiration generation, reduce repetitive work; Weaknesses: detail precision insufficient, weak consistency control; Opportunities: new roles emerging (AI trainers, prompt engineers); Threats: junior designer positions may shrink. Requirements: Style: four-quadrant layout, each quadrant a color block; Colors: Strengths (green), Weaknesses (yellow), Opportunities (blue), Threats (red); Labels: each quadrant lists 2-3 bullet points; Style: professional, clean, suitable for report PPT; Size: square, suitable for PPT insertion.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Precision: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> SWOT diagram generated. All 4 quadrants present. Colors follow requirements (green/yellow/blue/red).</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Each quadrant's bullet point text layout slightly crowded — if >3 points, may crowd together. Four-quadrant layout "roughly four quadrants" — but not precise enough. Quadrant borders slightly fuzzy.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> SWOT generation: <strong>good for "discussion drafts."</strong> For "formal report PPT SWOT," recommend PPT's built-in SmartArt or manually draw in Figma.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 cannot fully replace "professional chart tools," but can compress "infographic time" from 1 hour to 5 minutes.</strong></p>
+        <p>Previously, making a flowchart meant opening draw.io, dragging components, connecting arrows, adjusting colors,折腾半天 (fussing around). Now, spend 30 seconds writing a prompt, see 4 options in 1 minute.</p>
+        <p>For high-frequency content outputters (bloggers, consultants, product managers), this time difference has enormous value.</p>
+        <p><strong>My recommended workflow:</strong> Use GPT Image 2 for rapid infographic drafts → Pick the best → If data precision is critical, verify with Excel/PPT → Publish.</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Data Comparison</td><td class="score yellow">3/5</td><td>Internal discussion; client proposals need verification</td></tr>
+          <tr><td>02</td><td>Flowchart</td><td class="score yellow">3/5</td><td>Flow discussion drafts; product docs need redraw</td></tr>
+          <tr><td>03</td><td>Timeline</td><td class="score green">4/5</td><td>Popular science article illustrations, works well</td></tr>
+          <tr><td>04</td><td>Hierarchy Diagram</td><td class="score yellow">2/5</td><td>Small teams; large orgs get crowded</td></tr>
+          <tr><td>05</td><td>Pie Chart</td><td class="score yellow">3/5</td><td>Rough proportions; precise data needs professional tools</td></tr>
+          <tr><td>06</td><td>Comparison Table</td><td class="score yellow">3/5</td><td>Informal comparisons; formal reports need professional tools</td></tr>
+          <tr><td>07</td><td>Step Guide</td><td class="score green">5/5</td><td>Most practical scenario, directly usable for blogs</td></tr>
+          <tr><td>08</td><td>SWOT Analysis</td><td class="score yellow">3/5</td><td>Discussion drafts; formal PPTs need manual optimization</td></tr>
+        </tbody>
+      </table>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-portrait.html" class="next-article-title">GPT Image 2 Portrait Series — Finally, No Need to Ask Others for Photos</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>

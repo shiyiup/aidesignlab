@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 Mockup Series — Design Presentation Finally Has Hope — AI Design Lab</title>
+  <meta name="description" content="Tested 8 mockup scenarios with GPT Image 2. Its biggest value is "rapidly verifying design directions," not replacing professional mockup tools. Here's the honest review.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28; --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0; --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa; --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171; --radius: 14px; --radius-sm: 8px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    blockquote { border-left: 3px solid var(--accent-2); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(124,58,237,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 1.1rem; color: var(--text-2); }
+
+    .case-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 2rem 0; }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .score.green { color: var(--green); font-weight: 700; }
+    .score.yellow { color: var(--yellow); font-weight: 700; }
+
+    .verdict-box { background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); border: 1px solid rgba(124,58,237,0.2); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">Mockup</span>
+        <span>⏱️ 14 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 Mockup Series: Design Presentation Finally Has Hope</h1>
+      <p class="lead">After 8 mockup tests, here's my conclusion: GPT Image 2's biggest value is "rapidly verifying design directions," not replacing professional mockup tools.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Pain Point</h2>
+      <p>What's most embarrassing about design proposals?</p>
+      <p>Not "client isn't satisfied" — but <strong>you spent three days on a design, client looked for 5 seconds and said "no feeling."</strong></p>
+      <p>The problem? Your design mockup is isolated. Client can't see "what this logo would look like on a business card" or "how this interface feels on a phone."</p>
+      <p>So mockup (presentation) images have always been a "required course" for designers — but also a "time-consuming course."</p>
+      <p>Making one phone mockup: find a template, align, adjust lighting, handle perspective...折腾半小时 (fuss around for half an hour).</p>
+      <p>When GPT Image 2 came out, my first thought was: <strong>Can it generate mockups directly?</strong></p>
+      <blockquote>GPT Image 2's biggest mockup value is "rapidly verifying design directions," not replacing professional mockup tools.</blockquote>
+
+      <h2>Case 01: Phone Interface Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 01 / 08</div><h3>Music App on iPhone 15</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Place this music app interface on an iPhone 15 mockup. Requirements: Mockup angle: slightly perspective (not straight-on); Screen content: fully displays my interface image, no distortion; Lighting: mockup has realistic lighting, not flat; Background: simple wooden desk, natural light; Style: realistic product photography, not 3D rendering fake look.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Realism: 60-70%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Mockup generated. Interface placed, perspective and lighting roughly present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Interface distortion control average — screen edges slightly stretched. Lighting present but compared to real product photography still slightly "fake" — like "3D rendered mockup," not "real photo mockup."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Phone interface mockup: <strong>good for "internal discussion" or "rapid proposal drafts."</strong> For client final proposals, recommend manual processing with Photoshop + Figma mockup templates.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: Laptop Interface Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 02 / 08</div><h3>Website Homepage on MacBook Pro</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Place this website homepage screenshot on a MacBook Pro screen. Requirements: Mockup angle: straight-on with slight left angle (classic website display angle); Screen content: fully displays homepage, no distortion, no cropping; Keyboard and trackpad: retain MacBook's signature design; Background: simple office desk, coffee cup and potted plants; Lighting: natural light from left, keyboard with slight reflection; Style: real office scene, not studio shoot.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Detail: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> MacBook mockup generated. Homepage screenshot placed.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Screen content "clarity" not enough — enlarge to PPT, screen interface slightly blurry. Keyboard details (Touch Bar, key curves) AI handled relatively simply, not like "fine model."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Laptop mockup: <strong>good for "website proposal display draft."</strong> Good enough for clients to see "what the website looks like on a computer." Not enough precision for print brochures.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Business Card Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 03 / 08</div><h3>Logo on Business Card Set</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Apply this logo to a business card set. Requirements: Card material: white specialty paper, slight texture; Logo position: top-left, proportional (not too large or too small); Card info: leave space for name, title, phone, email (can use placeholder text); Display angle: two cards, one face-up, one slightly tilted up at corner; Lighting: natural light, realistic card shadow; Background: simple wooden desk; Style: brand proposal showcase, professional feel.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Excellent · Precision: 70-80%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Business cards generated. Logo placed. Two-card display angle variation present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Proportional" — AI not fully accurate. Some results logo too large, occupying one-third of card. "Slight texture" — AI did but somewhat templated. Paper white feels like "noise-added smooth material," not real specialty paper texture.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Business card mockup: <strong>one of GPT Image 2's most practical mockup scenarios.</strong> Quickly shows "what logo looks like on business card," much faster than manually adjusting in Figma.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: T-Shirt Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 04 / 08</div><h3>Illustration Printed on T-Shirt</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Print this illustration on a white t-shirt front. Requirements: T-shirt: pure white, cotton, natural wrinkles; Illustration position: center chest, appropriate size; Illustration integration: not "pasted on" but "printed on" texture (slight texture penetration feel); Display: flat lay, t-shirt ironed flat but retaining natural wrinkles; Background: light wood floor, natural light; Style: e-commerce product photo, like Taobao detail page display.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Integration: Needs Work</span></div>
+          <p class="case-notes"><strong>What worked:</strong> T-shirt mockup generated. Illustration printed on.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Printed texture" — AI not fully achieved. Illustration looks like "PS pasted image," not "screen printing" or "DTG" texture. T-shirt wrinkles and illustration integration not natural — wrinkles "cut off" by illustration, not realistic "wrinkles under illustration."</p>
+          <p class="case-notes"><strong>Conclusion:</strong> T-shirt mockup: <strong>good for "e-commerce title page display" inspiration reference.</strong> Not realistic enough for "actual t-shirt print effect."</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Packaging Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 05 / 08</div><h3>Label on Coffee Bag</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Apply this label design to a coffee bag front. Requirements: Coffee bag: kraft paper material, wrinkles and natural shadows; Label position: center front, slightly curved following bag surface (not flat贴图); Label texture: paper label, slight shadow (not floating on bag); Background: cafe counter, coffee machine and cups; Lighting: warm tones, coffee atmosphere; Style: brand proposal showcase, realistic feel.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Precision: Not 3D Render Quality</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Coffee bag mockup generated. Label applied, curved surface present.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Curved surface" — AI understood superficially. Label still looks "pasted flat surface," not "label deforming with curved surface." Kraft paper texture AI did but somewhat templated.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Packaging mockup: <strong>good for "brand proposal inspiration reference,"</strong> but precision not enough to replace "3D rendered packaging mockups."</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Magazine Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 06 / 08</div><h3>Poster on Magazine Cover</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Place this poster on a magazine cover. Requirements: Magazine: flat lay, cover fully displays my poster; Angle: slightly perspective (not straight flat lay); Environment: magazine on wooden desk, coffee cup and glasses beside; Lighting: natural light, magazine cover with slight reflection; Details: magazine thickness, spine, page numbers all have realistic feel; Style: lifestyle magazine photography.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Realism: Average</span></div>
+          <p class="case-notes"><strong>What worked:</strong> Magazine mockup generated. Poster placed on cover. Coffee and glasses beside.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Magazine "thickness" and "spine" AI handled simply — more like "thick folded paper," not real magazine. "Poster on cover" achieved but fusion average — poster edge and magazine cover junction slightly fake.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Magazine mockup: <strong>good for "publication proposal display."</strong> Not precise enough for "real printed magazine effect."</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Multi-Device Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 07 / 08</div><h3>Responsive Design on Desktop, Laptop, Tablet, Phone</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Place the same website design on 4 devices' screens. Arranged on one image: Device 1: Desktop (27" monitor); Device 2: Laptop (MacBook Pro 14"); Device 3: Tablet (iPad Pro 12.9"); Device 4: Phone (iPhone 15 Pro). Requirements: All 4 device screens display the same webpage; Device size proportions correct (desktop largest, phone smallest); Background: simple office scene, all devices on same desk; Lighting: unified natural light, realistic device shadows; Style: responsive design showcase, suitable for proposal PPT.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Excellent · Precision: 80%</span></div>
+          <p class="case-notes"><strong>What worked:</strong> 4-device display generated. Same webpage on all 4 screens.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Device size proportions" — AI not precise. Desktop and laptop size difference sometimes not obvious enough. "Unified lighting" across 4 devices not enough — some devices have heavier shadows, some lighter.</p>
+          <p class="case-notes"><strong>Conclusion:</strong> Multi-device mockup: <strong>one of GPT Image 2's most valuable mockup directions.</strong> One-shot "responsive design display," much faster than manually arranging 4 mockups in Figma.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Brand Application Mockup</h2>
+      <div class="case-card">
+        <div class="case-header"><div class="case-number">Case 08 / 08</div><h3>Logo on Business Card, T-Shirt, Website, Sticker</h3></div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Apply this logo to 4 scenarios, arranged on one image: Scenario 1: Business card (white specialty paper, logo top-left); Scenario 2: T-shirt (white cotton T, logo on chest); Scenario 3: Website header (dark background, logo left side); Scenario 4: Sticker (white adhesive, logo centered). Requirements: Logo color and proportion consistent across all 4 scenarios; Layout: 2x2 grid, neatly arranged; Background: pure white or light gray, highlighting 4 application scenarios; Style: brand VI manual display page, professional feel.</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Consistency: Weak Point</span></div>
+          <p class="case-notes"><strong>What worked:</strong> 4 scenarios generated. Logo applied.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Biggest problem: <strong>logo consistency control.</strong> Logo color slightly different across 4 scenarios — business card logo is deep blue, t-shirt logo appears lighter blue. This is the recurring issue: <strong>GPT Image 2 excels at single good images but struggles with "multi-image consistency control."</strong></p>
+          <p class="case-notes"><strong>Conclusion:</strong> Brand application mockup: <strong>good for "brand VI proposal inspiration reference."</strong> For "precise VI application display," base on AI-generated inspiration then manually unify details in Figma.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 cannot fully replace "professional mockup tools," but can compress "mockup time" from 30 minutes to 3 minutes.</strong></p>
+        <p>Previously, to show "what design looks like in real scenes," you opened Figma, found mockup templates, aligned, adjusted lighting,折腾半小时 (fussed for half an hour). Now, spend 30 seconds writing a prompt, see 4 mockup options in 1 minute.</p>
+        <p>For high-frequency proposal-making designers, this time difference has enormous value.</p>
+        <p><strong>My recommended workflow:</strong> Use GPT Image 2 for rapid mockup inspiration images → Pick the best → If precision is critical (final proposals for clients), manually refine with Photoshop + Figma templates.</p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead><tr><th>Case</th><th>Type</th><th>Rating</th><th>Best Use</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Phone Mockup</td><td class="score yellow">3/5</td><td>Internal discussion, rapid proposal drafts</td></tr>
+          <tr><td>02</td><td>Laptop Mockup</td><td class="score green">4/5</td><td>Website proposal display, works well</td></tr>
+          <tr><td>03</td><td>Business Card</td><td class="score green">5/5</td><td>Most practical scenario, strongly recommended</td></tr>
+          <tr><td>04</td><td>T-Shirt Mockup</td><td class="score yellow">3/5</td><td>E-commerce title page inspiration reference</td></tr>
+          <tr><td>05</td><td>Packaging Mockup</td><td class="score yellow">3/5</td><td>Brand proposal inspiration, not precise enough</td></tr>
+          <tr><td>06</td><td>Magazine Mockup</td><td class="score yellow">3/5</td><td>Publication proposal display</td></tr>
+          <tr><td>07</td><td>Multi-Device</td><td class="score green">5/5</td><td>Most valuable direction, recommended</td></tr>
+          <tr><td>08</td><td>Brand Application</td><td class="score yellow">3/5</td><td>Inspiration reference, consistency needs manual work</td></tr>
+        </tbody>
+      </table>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-meme.html" class="next-article-title">GPT Image 2 Meme & Style Transfer Series — Finally Can Create Your Own Memes</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+</body>
+</html>
