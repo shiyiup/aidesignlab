@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Design Lab — Master AI Tools for Design</title>
+  <meta name="description" content="Practical AI design tutorials, tool reviews, and prompt templates. Learn how to use GPT Image 2, Midjourney, and more to level up your design workflow.">
+  <meta name="keywords" content="AI design tools, GPT Image 2 tutorial, Midjourney prompts, AI image generator, design workflow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #09090e;
+      --bg-2: #0f0f17;
+      --bg-3: #16161f;
+      --surface: #1c1c28;
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f0f5;
+      --text-2: #9898b0;
+      --text-3: #5c5c72;
+      --accent: #7c3aed;
+      --accent-2: #a78bfa;
+      --accent-glow: rgba(124,58,237,0.25);
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6,182,212,0.2);
+      --pink: #ec4899;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(9,9,14,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.25rem;
+      background: linear-gradient(135deg, var(--accent-2), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.9rem; color: var(--text-2);
+      transition: color 0.2s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      font-size: 0.875rem !important;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(6,182,212,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: var(--accent-2);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 2rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      max-width: 900px;
+      margin-bottom: 1.5rem;
+      letter-spacing: -2px;
+      line-height: 1.05;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, var(--accent-2) 50%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-2);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.875rem 2rem;
+      border-radius: 50px;
+      font-weight: 600; font-size: 1rem;
+      border: none; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      padding: 0.875rem 2rem;
+      border-radius: 50px;
+      font-weight: 600; font-size: 1rem;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-secondary:hover { background: var(--bg-3); border-color: rgba(255,255,255,0.15); }
+
+    /* Floating cards animation */
+    .hero-float {
+      margin-top: 4rem;
+      display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .float-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--text-2);
+      backdrop-filter: blur(10px);
+      animation: float 6s ease-in-out infinite;
+      transition: transform 0.3s;
+    }
+    .float-card:hover { transform: translateY(-4px) !important; }
+    .float-card:nth-child(1) { animation-delay: 0s; }
+    .float-card:nth-child(2) { animation-delay: 1s; }
+    .float-card:nth-child(3) { animation-delay: 2s; }
+    .float-card:nth-child(4) { animation-delay: 0.5s; }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .float-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .float-icon.ui { background: rgba(124,58,237,0.2); }
+    .float-icon.logo { background: rgba(6,182,212,0.2); }
+    .float-icon.blog { background: rgba(236,72,153,0.2); }
+    .float-icon.ec { background: rgba(16,185,129,0.2); }
+
+    /* ── SECTION ── */
+    .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 1rem;
+    }
+    .section-tag::before { content: ''; width: 20px; height: 2px; background: var(--accent); border-radius: 2px; }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    .section-sub { font-size: 1.1rem; color: var(--text-2); max-width: 600px; margin-bottom: 3rem; }
+
+    /* ── TOOL CARDS ── */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tool-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .tool-card:hover::before { opacity: 1; }
+
+    .tool-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .tool-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .tool-icon.ai { background: linear-gradient(135deg, #7c3aed22, #7c3aed44); }
+    .tool-icon.mj { background: linear-gradient(135deg, #06b6d422, #06b6d444); }
+    .tool-icon.dalle { background: linear-gradient(135deg, #f59e0b22, #f59e0b44); }
+    .tool-badge { font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 50px; }
+    .badge-hot { background: rgba(239,68,68,0.15); color: #f87171; }
+    .badge-new { background: rgba(16,185,129,0.15); color: #34d399; }
+    .badge-guide { background: rgba(124,58,237,0.15); color: var(--accent-2); }
+
+    .tool-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .tool-card p { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 1.25rem; }
+    .tool-meta { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--text-3); }
+    .tool-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ── ARTICLE ── */
+    .featured-article {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+      .featured-article { grid-template-columns: 1fr; }
+    }
+    .article-visual {
+      background: linear-gradient(135deg, #1a0a2e, #0a1628);
+      display: flex; align-items: center; justify-content: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
+    }
+    .article-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(124,58,237,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(6,182,212,0.2) 0%, transparent 50%);
+    }
+    .ui-mockup {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      width: 100%; max-width: 360px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+    .mockup-bar { display: flex; gap: 6px; margin-bottom: 1rem; }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot.r { background: #ff5f57; }
+    .mockup-dot.y { background: #febc2e; }
+    .mockup-dot.g { background: #28c840; }
+    .mockup-content { display: flex; flex-direction: column; gap: 0.75rem; }
+    .mockup-header { height: 48px; background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(6,182,212,0.2)); border-radius: 8px; }
+    .mockup-row { display: flex; gap: 0.75rem; }
+    .mockup-card { flex: 1; height: 80px; background: rgba(255,255,255,0.05); border-radius: 8px; }
+    .mockup-card.accent { background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(124,58,237,0.2)); }
+
+    .article-content { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+    .article-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.2);
+      color: var(--accent-2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600;
+      width: fit-content; margin-bottom: 1.5rem;
+    }
+    .article-content h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+    .article-content p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1rem; }
+    .article-stats { display: flex; gap: 2rem; margin-bottom: 2rem; }
+    .stat { text-align: left; }
+    .stat-number { font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--accent-2); }
+    .stat-label { font-size: 0.8rem; color: var(--text-3); }
+
+    /* ── PROMPTS ── */
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .prompt-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+    .prompt-card:hover { border-color: rgba(124,58,237,0.3); }
+    .prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .prompt-text {
+      font-size: 0.85rem; color: var(--text-2);
+      background: var(--bg-2);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-family: 'DM Mono', 'Courier New', monospace;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .prompt-result { font-size: 0.8rem; color: var(--text-3); }
+    .prompt-result strong { color: var(--green); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #1a0a2e, #0a1628);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 24px;
+      padding: 5rem 3rem;
+      text-align: center;
+      margin: 4rem 0;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-2); max-width: 500px; margin: 0 auto 2.5rem; font-size: 1.1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 0.875rem;
+    }
+    footer p { margin-bottom: 0.5rem; }
+    footer a { color: var(--accent-2); }
+
+    /* ── SCROLL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .section { padding: 4rem 1rem; }
+      .tool-grid { grid-template-columns: 1fr; }
+      .prompt-grid { grid-template-columns: 1fr; }
+      .article-stats { gap: 1rem; }
+      .article-content { padding: 2rem; }
+    }
+
+    /* ── RATING STARS ── */
+    .rating { display: flex; gap: 2px; margin-bottom: 0.5rem; }
+    .star { color: var(--yellow); font-size: 0.9rem; }
+    .star.empty { color: var(--text-3); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 1rem 0;
+    }
+
+    /* ── TAGS ── */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="#tools">Tools</a>
+      <a href="#tutorials">Tutorials</a>
+      <a href="#prompts">Prompts</a>
+      <a href="https://longyu2037.com" target="_blank">About</a>
+      <a href="#newsletter" class="nav-cta">Subscribe</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span></span>
+      Design Skills × AI Superpowers
+    </div>
+    <h1>
+      Stop Watching.<br>
+      <span class="gradient-text">Start Creating.</span>
+    </h1>
+    <p class="hero-sub">
+      Practical tutorials, real-world prompts, and honest tool reviews.
+      No fluff. No hype. Just the AI design skills that actually move the needle.
+    </p>
+    <div class="hero-actions">
+      <a href="#tools" class="btn-primary">
+        Explore Reviews
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="#prompts" class="btn-secondary">
+        Browse Prompts
+      </a>
+    </div>
+    <div class="hero-float">
+      <div class="float-card">
+        <div class="float-icon ui">🎨</div>
+        <span>UI Generation</span>
+      </div>
+      <div class="float-card">
+        <div class="float-icon logo">🔷</div>
+        <span>Logo &amp; Icon</span>
+      </div>
+      <div class="float-card">
+        <div class="float-icon blog">📊</div>
+        <span>Info Graphics</span>
+      </div>
+      <div class="float-card">
+        <div class="float-icon ec">🛒</div>
+        <span>E-commerce</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS OVERVIEW -->
+  <section class="section" id="tools">
+    <div class="reveal">
+      <div class="section-tag">Tool Reviews</div>
+      <h2 class="section-title">Honest Reviews. No Bullshit.</h2>
+      <p class="section-sub">I tested these tools so you don't have to. Here's what actually works — and what doesn't.</p>
+    </div>
+    <div class="tool-grid">
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">🤖</div>
+          <span class="tool-badge badge-hot">HOT</span>
+        </div>
+        <h3>GPT Image 2</h3>
+        <p>OpenAI's latest image model. Incredible text rendering, photorealistic faces, and native UI generation. The new standard for AI design tools.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>🔥 8 Series Reviewed</span>
+          <span>⭐ Top Pick</span>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon mj">🌌</div>
+          <span class="tool-badge badge-new">NEW</span>
+        </div>
+        <h3>Midjourney V7</h3>
+        <p>The art direction king. Still the best for stylized illustration, concept art, and creative exploration. No native UI capability though.</p>
+        <div class="rating">
+          <span class="star">★★★★</span><span class="star empty">★</span>
+        </div>
+        <div class="tool-meta">
+          <span>🎨 Best for Art</span>
+          <span>💰 Paid</span>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon dalle">🎯</div>
+          <span class="tool-badge badge-guide">GUIDE</span>
+        </div>
+        <h3>Xingliu (星流) Art</h3>
+        <p>LiblibAI's Image-2 platform. Same output as GPT Image 2 but accessible from China. Batch generation and editing built in.</p>
+        <div class="rating">
+          <span class="star">★★★</span><span class="star empty">★★</span>
+        </div>
+        <div class="tool-meta">
+          <span>🇨🇳 China Access</span>
+          <span>🆓 Free Tier</span>
+        </div>
+      </div>
+      <div class="tool-card reveal">
+        <div class="tool-card-header">
+          <div class="tool-icon ai">🖼️</div>
+          <span class="tool-badge badge-guide">GUIDE</span>
+        </div>
+        <h3>Ideogram 3.0</h3>
+        <p>The text rendering specialist. Still the most reliable for logos with text, typographic posters, and precise typography in images.</p>
+        <div class="rating">
+          <span class="star">★★★</span><span class="star empty">★★</span>
+        </div>
+        <div class="tool-meta">
+          <span>✍️ Best Typography</span>
+          <span>✏️ Logo Friendly</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section class="section" id="tutorials">
+    <div class="reveal">
+      <div class="section-tag">Featured Article</div>
+      <h2 class="section-title">GPT Image 2 — UI Generation Deep Dive</h2>
+    </div>
+    <div class="featured-article reveal">
+      <div class="article-visual">
+        <div class="ui-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot r"></div>
+            <div class="mockup-dot y"></div>
+            <div class="mockup-dot g"></div>
+          </div>
+          <div class="mockup-content">
+            <div class="mockup-header"></div>
+            <div class="mockup-row">
+              <div class="mockup-card"></div>
+              <div class="mockup-card accent"></div>
+            </div>
+            <div class="mockup-row">
+              <div class="mockup-card"></div>
+              <div class="mockup-card"></div>
+              <div class="mockup-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article-content">
+        <div class="article-tag">📱 UI Design · ⏱️ 8 min read</div>
+        <h2>GPT Image 2 UI Generation: Can It Actually Replace Your Designer?</h2>
+        <p>I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can and cannot do.</p>
+        <div class="article-stats">
+          <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Test Cases</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">4.2</div>
+            <div class="stat-label">Avg. Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">Free</div>
+            <div class="stat-label">For ChatGPT+</div>
+          </div>
+        </div>
+        <a href="gpt-image-2-ui-generation.html" class="btn-primary">
+          Read Full Article
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMPTS -->
+  <section class="section" id="prompts">
+    <div class="reveal">
+      <div class="section-tag">Prompt Library</div>
+      <h2 class="section-title">Copy-Paste Prompts. Ready to Use.</h2>
+      <p class="section-sub">Tested prompts from real projects. Each one works — not theoretical "this might work".</p>
+    </div>
+    <div class="prompt-grid">
+      <div class="prompt-card reveal">
+        <div class="prompt-label">UI · Mobile App</div>
+        <div class="prompt-text">A modern fitness tracking mobile app screen, dark theme, showing weekly running statistics with a heart rate graph, clean minimalist UI, iOS design language</div>
+        <div class="prompt-result"><strong>Result:</strong> 4.5/5 — Clean layout, readable typography, suitable for wireframe phase</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">UI · Dashboard</div>
+        <div class="prompt-text">SaaS analytics dashboard for an e-commerce store, showing revenue chart, top products list, and customer map, dark mode, Figma-style clean design</div>
+        <div class="prompt-result"><strong>Result:</strong> 4/5 — Good data visualization, some text rendering issues in legends</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">Logo · Brand</div>
+        <div class="prompt-text">Minimalist tech company logo, a geometric fox head made of triangles, dark background, monochrome white, flat design, vector style</div>
+        <div class="prompt-result"><strong>Result:</strong> 4/5 — Clean shapes, good for concept exploration</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">E-commerce · Banner</div>
+        <div class="prompt-text">Summer sale web banner, 1200x628px, bold text "SUMMER SALE UP TO 50% OFF", palm tree beach background, vibrant colors, modern typography</div>
+        <div class="prompt-result"><strong>Result:</strong> 4.5/5 — Text rendered accurately, ready for use with minor edits</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">Info Graphic</div>
+        <div class="prompt-text">A clean infographic showing the AI design workflow: Research, Wireframe, Generate, Edit, Deliver, connected by arrows, flat design, blue accent colors</div>
+        <div class="prompt-result"><strong>Result:</strong> 4/5 — Good for presentation slides, slight alignment issues</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">Portrait · Professional</div>
+        <div class="prompt-text">Professional LinkedIn headshot, Asian woman in her 30s, wearing a blue blazer, clean white background, studio lighting, confident expression</div>
+        <div class="prompt-result"><strong>Result:</strong> 3.5/5 — Good for mockups, some ethnic consistency issues in multi-image generation</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">Mockup · App Preview</div>
+        <div class="prompt-text">A smartphone displaying a food delivery app interface, placed on a wooden desk with coffee cup and notebook, top-down angle, natural lighting</div>
+        <div class="prompt-result"><strong>Result:</strong> 4/5 — Natural look, great for portfolio and pitch decks</div>
+      </div>
+      <div class="prompt-card reveal">
+        <div class="prompt-label">Meme · Style Transfer</div>
+        <div class="prompt-text">That one iconic meme face reimagined in the style of traditional Chinese ink painting, splash art style, dramatic brush strokes</div>
+        <div class="prompt-result"><strong>Result:</strong> 5/5 — Creative gold mine, style transfer is GPT Image 2's strongest feature</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="cta-section reveal">
+      <h2>Stop Guessing.<br>Start Shipping.</h2>
+      <p>Get new tutorials, prompt drops, and tool reviews delivered to your inbox. No spam. Unsubscribe anytime.</p>
+      <form id="newsletter" style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;max-width:500px;margin:0 auto;" onsubmit="event.preventDefault();document.getElementById('submsg').style.display='block';this.style.display='none';">
+        <input type="email" placeholder="your@email.com" required style="flex:1;min-width:220px;padding:0.875rem 1.25rem;border-radius:50px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;font-size:1rem;outline:none;">
+        <button type="submit" class="btn-primary">Subscribe</button>
+      </form>
+      <p id="submsg" style="display:none;color:var(--green);margin-top:1rem;font-weight:600;">Thanks! You're on the list.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p>Designed with intention. Built with AI. Powered by human creativity.</p>
+    <p style="margin-top:1rem;">
+      <a href="#tools">Tools</a> · <a href="#tutorials">Tutorials</a> · <a href="#prompts">Prompts</a> · <a href="https://longyu2037.com" target="_blank">About</a>
+    </p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav background
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.background = window.scrollY > 50
+        ? 'rgba(9,9,14,0.95)'
+        : 'rgba(9,9,14,0.8)';
+    });
+  </script>
+</body>
+</html>

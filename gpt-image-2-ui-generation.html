@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Image 2 UI Generation: Can It Actually Replace Your Designer? — AI Design Lab</title>
+  <meta name="description" content="I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can and cannot do.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #09090e; --bg-2: #0f0f17; --bg-3: #16161f; --surface: #1c1c28;
+      --border: rgba(255,255,255,0.07); --text: #f0f0f5; --text-2: #9898b0;
+      --text-3: #5c5c72; --accent: #7c3aed; --accent-2: #a78bfa;
+      --cyan: #06b6d4; --green: #10b981; --yellow: #f59e0b; --red: #f87171;
+      --radius: 14px; --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(9,9,14,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; background: linear-gradient(135deg, var(--accent-2), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.9rem; color: var(--text-2); font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-cta { background: var(--accent); color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600 !important; font-size: 0.875rem !important; transition: transform 0.2s, box-shadow 0.2s !important; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(124,58,237,0.25); text-decoration: none; }
+
+    .article-header { padding: 8rem 2rem 3rem; max-width: 800px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2); font-size: 0.875rem; margin-bottom: 2rem; transition: color 0.2s; }
+    .back-link:hover { color: var(--text); text-decoration: none; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.875rem; color: var(--text-2); }
+    .meta-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; }
+    .meta-tag.ai { color: var(--accent-2); border-color: rgba(124,58,237,0.3); background: rgba(124,58,237,0.08); }
+    .article-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; line-height: 1.1; }
+    .article-header .lead { font-size: 1.2rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 1.25rem; }
+    .author { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+    .author-info .author-name { font-weight: 600; font-size: 0.95rem; }
+    .author-info .author-role { font-size: 0.8rem; color: var(--text-3); }
+
+    .article-body { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .article-body h2 { font-size: 1.75rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: -0.5px; }
+    .article-body h3 { font-size: 1.25rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--text); }
+    .article-body p { color: var(--text-2); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .article-body strong { color: var(--text); font-weight: 600; }
+
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .case-header { padding: 1.5rem; border-bottom: 1px solid var(--border); }
+    .case-number { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+    .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-body { padding: 1.5rem; }
+    .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; }
+    .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+    .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
+    .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
+    .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; }
+
+    .rating-bar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .rating-label { font-size: 0.8rem; color: var(--text-3); width: 80px; }
+    .rating-track { flex: 1; height: 6px; background: var(--bg-3); border-radius: 3px; overflow: hidden; }
+    .rating-fill { height: 100%; border-radius: 3px; }
+    .rating-fill.high { background: var(--green); }
+    .rating-fill.mid { background: var(--yellow); }
+    .rating-fill.low { background: var(--red); }
+
+    .verdict-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05));
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    .verdict-box h3 { color: var(--accent-2); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+    .verdict-box p { color: var(--text-2); margin-bottom: 0.75rem; }
+    .verdict-box p:last-child { margin-bottom: 0; }
+
+    .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
+    .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
+    .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
+    .summary-table tr:hover td { background: var(--bg-2); }
+    .score { font-weight: 700; }
+    .score.green { color: var(--green); }
+    .score.yellow { color: var(--yellow); }
+    .score.red { color: var(--red); }
+
+    .next-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin: 3rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .next-article-text { font-size: 0.8rem; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .next-article-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-2); }
+    .next-article-arrow { font-size: 2rem; color: var(--text-3); }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-3); font-size: 0.875rem; }
+    footer a { color: var(--accent-2); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .article-header { padding: 7rem 1rem 2rem; }
+      .article-body { padding: 0 1rem 3rem; }
+      .next-article { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">aidesignlab.cc</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#tutorials">Tutorials</a>
+      <a href="index.html#prompts">Prompts</a>
+      <a href="index.html#tools">Tools</a>
+    </div>
+  </nav>
+
+  <article>
+    <header class="article-header">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L12 19M5 12L12 5"/></svg>
+        Back to Home
+      </a>
+      <div class="article-meta">
+        <span class="meta-tag ai">GPT Image 2</span>
+        <span class="meta-tag">UI Design</span>
+        <span>⏱️ 12 min read</span>
+        <span>📅 May 2026</span>
+      </div>
+      <h1>GPT Image 2 UI Generation: Can It Actually Replace Your Designer?</h1>
+      <p class="lead">I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can do, what it can't do, and when you should still reach for Figma.</p>
+      <div class="author">
+        <div class="author-avatar">龙</div>
+        <div class="author-info">
+          <div class="author-name">Long Yu (龙御)</div>
+          <div class="author-role">UI Designer · AI Design Enthusiast · Creator of aidesignlab.cc</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <h2>The Test Setup</h2>
+      <p>Before we dive in, here's my testing approach: I used <strong>GPT-4o with Image 2 generation</strong> across 8 different UI scenarios — mobile apps, web dashboards, onboarding flows, settings pages, and more. Each prompt was written to be as specific as possible (because vague prompts = vague results).</p>
+      <p>I'm evaluating on three dimensions:</p>
+      <p><strong>Layout Accuracy</strong> — Does the generated interface have a logical, usable layout?<br>
+      <strong>Typography Clarity</strong> — Are the text elements readable and properly sized?<br>
+      <strong>Workflow Utility</strong> — Can this actually be used in a real design process?</p>
+
+      <h2>Case 01: Fitness Tracking Mobile App</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 01 / 08</div>
+          <h3>Mobile App Screen — Fitness Tracker</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A modern fitness tracking mobile app screen, dark theme, showing weekly running statistics with a heart rate graph, clean minimalist UI, iOS design language, bottom navigation bar with icons for Home, Activity, Stats, Profile</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Good · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:90%"></div></div>
+            <span class="score green">4.5/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The layout was clean and usable. The dark theme rendered beautifully with good contrast ratios. The bottom navigation bar had recognizable icons.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The heart rate graph was a bit abstract — more of an artistic interpretation than an actual data visualization. The "Stats" icon was slightly off-center.</p>
+          <p class="case-notes"><strong>Best use:</strong> Wireframe exploration and mood board inspiration. Don't expect pixel-perfect production files.</p>
+        </div>
+      </div>
+
+      <h2>Case 02: SaaS Analytics Dashboard</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 02 / 08</div>
+          <h3>Web Dashboard — E-commerce Analytics</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">SaaS analytics dashboard for an e-commerce store, showing revenue chart, top products list, and customer map, dark mode, Figma-style clean design, sidebar navigation, top metrics cards with numbers and percentage change indicators</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Mixed · Utility: Medium</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:65%"></div></div>
+            <span class="score yellow">3.3/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The overall structure was recognizable as a dashboard. The sidebar navigation was functional-looking.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The data visualization was too "artistic" — the numbers and chart elements looked decorative rather than realistic. The "customer map" was basically abstract blobs.</p>
+          <p class="case-notes"><strong>Best use:</strong> Pitch deck slides and stakeholder presentations. Not suitable for actual data-driven product work.</p>
+        </div>
+      </div>
+
+      <h2>Case 03: Onboarding Flow Screens</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 03 / 08</div>
+          <h3>Mobile Onboarding — 3-Step Flow</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A mobile app onboarding screen 1 of 3, clean white background, large friendly illustration of a plant growing, headline "Grow Your Skills Every Day", subtitle text below, page indicator dots at the bottom, soft pastel colors, approachable modern design</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Excellent · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:95%"></div></div>
+            <span class="score green">4.8/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> This was surprisingly excellent. The illustration was charming, the text rendered correctly, and the overall composition was balanced. One of the best results in this test.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The CTA button wasn't consistently placed across generated variants. Minor inconsistency.</p>
+          <p class="case-notes"><strong>Best use:</strong> Landing page illustrations, onboarding screens, empty states. Highly recommended for marketing-focused design work.</p>
+        </div>
+      </div>
+
+      <h2>Case 04: Settings Page</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 04 / 08</div>
+          <h3>Mobile Settings — Account & Privacy</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A clean settings page on a smartphone, showing account profile section at top with avatar and name, followed by grouped settings items with icons, toggle switches for notifications and privacy options, chevron arrows for navigation items, iOS Settings app style, light theme</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Good · Utility: Medium-High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:80%"></div></div>
+            <span class="score green">4.0/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The grouped list structure was recognizable and functional. The toggle switches looked realistic.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Avatar placeholders tended to show abstract faces rather than user avatars. Group headers sometimes had inconsistent formatting.</p>
+          <p class="case-notes"><strong>Best use:</strong> Wireframe concepts for settings pages. Useful for communicating structure to stakeholders before detailed design.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: E-commerce Product Listing</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 05 / 08</div>
+          <h3>Mobile Product Grid — Shopping App</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A mobile shopping app product listing page, 2-column grid layout, each card shows product image, brand name, product title, price with discount strikethrough, add to cart button, clean white background, Pinterest-meets-shopify aesthetic, soft shadows on cards</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Mixed · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:85%"></div></div>
+            <span class="score green">4.3/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The 2-column grid layout was well-executed. Product card composition was clean. Pricing display was accurate.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Product images sometimes showed unusual artifacts (clothes with extra limbs, accessories floating). The strikethrough price was occasionally not rendered correctly.</p>
+          <p class="case-notes"><strong>Best use:</strong> Mood boards for product page layouts. Great for communicating e-commerce design direction.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Login / Sign Up Screen</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 06 / 08</div>
+          <h3>Auth Screen — Modern Login</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A modern mobile login screen, centered form with email input field, password input field, large primary login button, social login options (Google, Apple) below, "Forgot Password?" link, clean minimal design, subtle gradient background, professional SaaS aesthetic</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Excellent · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:92%"></div></div>
+            <span class="score green">4.6/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> This was one of the best results. The form elements were clean, well-spaced, and realistic. The social login icons looked official.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Very minor — occasionally the input field placeholder text was gibberish rather than helpful labels like "Enter your email".</p>
+          <p class="case-notes"><strong>Best use:</strong> Production-ready inspiration for auth screens. Some results are close enough to use as direct design references.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Empty State</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 07 / 08</div>
+          <h3>Empty State — No Notifications</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A friendly empty state screen for a notifications app, large centered illustration of an inbox with a sleeping cat, headline "You're all caught up!", subtitle "No new notifications right now", small ghost button "Refresh", pastel color scheme, playful rounded design, friendly 3D illustration style</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Good · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:88%"></div></div>
+            <span class="score green">4.4/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The illustration was delightful and exactly what was asked for. The text was readable and the layout was balanced.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The 3D style was sometimes inconsistent — some elements looked flat while others were rendered with depth.</p>
+          <p class="case-notes"><strong>Best use:</strong> Empty states, error pages, 404 pages. GPT Image 2 handles illustration-style UI better than data-heavy UI.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Navigation Menu</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 08 / 08</div>
+          <h3>Hamburger Menu — Mobile Navigation</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">A mobile hamburger menu drawer, dark overlay background, white menu panel sliding in from left, user profile section at top, list of navigation items with icons (Home, Search, Library, Playlists, Settings, Help), logout option at bottom, clean minimal design, Material Design 3 style</div>
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Okay · Typography: Okay · Utility: Low</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:55%"></div></div>
+            <span class="score yellow">2.8/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> The concept was there — dark overlay, menu panel, icons.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Navigation menu overlays are a weak point. The icons often didn't match their labels, and the "slide-in" effect was lost in a static image. List items tended to look repetitive.</p>
+          <p class="case-notes"><strong>Best use:</strong> Conceptual mood board only. Don't rely on this for navigation pattern inspiration.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>The Verdict</h3>
+        <p><strong>GPT Image 2 is a powerful design exploration tool, not a production replacement.</strong></p>
+        <p>It excels at: illustration-style UI, auth screens, empty states, onboarding flows, and conceptual mood boards.</p>
+        <p>It struggles with: data-heavy dashboards, navigation overlays, complex list structures, and anything requiring pixel-perfect alignment.</p>
+        <p>The best workflow? <strong>Use it to explore directions fast, then refine in Figma.</strong></p>
+      </div>
+
+      <h2>Summary Table</h2>
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>UI Type</th>
+            <th>Layout</th>
+            <th>Typography</th>
+            <th>Utility</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Fitness Tracker</td>
+            <td class="score green">Great</td>
+            <td class="score green">Good</td>
+            <td class="score green">High</td>
+            <td class="score green">4.5</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>Analytics Dashboard</td>
+            <td class="score yellow">Good</td>
+            <td class="score yellow">Mixed</td>
+            <td class="score yellow">Medium</td>
+            <td class="score yellow">3.3</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>Onboarding Flow</td>
+            <td class="score green">Great</td>
+            <td class="score green">Excellent</td>
+            <td class="score green">High</td>
+            <td class="score green">4.8</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>Settings Page</td>
+            <td class="score green">Good</td>
+            <td class="score green">Good</td>
+            <td class="score green">Medium-High</td>
+            <td class="score green">4.0</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>Product Grid</td>
+            <td class="score green">Great</td>
+            <td class="score yellow">Mixed</td>
+            <td class="score green">High</td>
+            <td class="score green">4.3</td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td>Login / Sign Up</td>
+            <td class="score green">Great</td>
+            <td class="score green">Excellent</td>
+            <td class="score green">High</td>
+            <td class="score green">4.6</td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td>Empty State</td>
+            <td class="score green">Great</td>
+            <td class="score green">Good</td>
+            <td class="score green">High</td>
+            <td class="score green">4.4</td>
+          </tr>
+          <tr>
+            <td>08</td>
+            <td>Navigation Menu</td>
+            <td class="score yellow">Okay</td>
+            <td class="score yellow">Okay</td>
+            <td class="score red">Low</td>
+            <td class="score yellow">2.8</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align:center;color:var(--text-3);font-size:0.875rem;">Average Score: <strong style="color:var(--accent-2)">4.1 / 5.0</strong></p>
+
+      <h2>My Recommended Workflow</h2>
+      <p>Here's how I actually use GPT Image 2 in my UI design process:</p>
+      <p><strong>Step 1 — Explore directions (GPT Image 2):</strong> Generate 5-10 UI variants for a screen in under 5 minutes. Find the direction that feels right.</p>
+      <p><strong>Step 2 — Extract insights (You):</strong> Note what works: layout patterns, color combinations, component styles. These become your design decisions.</p>
+      <p><strong>Step 3 — Build properly (Figma/Code):</strong> Take the direction to Figma or your component library. Build it right — with accessibility, spacing, and real data.</p>
+      <p>The key insight: <strong>GPT Image 2 is a brainstorming partner, not a replacement for design judgment.</strong> It accelerates exploration; it doesn't eliminate expertise.</p>
+
+      <div class="next-article">
+        <div>
+          <div class="next-article-text">Next in the Series</div>
+          <a href="gpt-image-2-logo-icon.html" class="next-article-title">GPT Image 2 Logo & Icon Series — Can AI Design Your Brand?</a>
+        </div>
+        <div class="next-article-arrow">→</div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
+    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+  </footer>
+
+</body>
+</html>
