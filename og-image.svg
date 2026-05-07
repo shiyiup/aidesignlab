@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#09090e"/>
+      <stop offset="50%" style="stop-color:#0f0f17"/>
+      <stop offset="100%" style="stop-color:#16161f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="200" fill="#7c3aed" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="250" fill="#06b6d4" opacity="0.08"/>
+  <circle cx="900" cy="150" r="100" fill="#a78bfa" opacity="0.05"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.03" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Logo/Brand -->
+  <g transform="translate(60, 60)">
+    <rect width="40" height="40" rx="8" fill="url(#accent)"/>
+    <text x="8" y="28" font-family="system-ui, sans-serif" font-size="22" font-weight="bold" fill="#ffffff">AI</text>
+    <text x="55" y="28" font-family="system-ui, sans-serif" font-size="24" font-weight="600" fill="#f0f0f5">Design Lab</text>
+  </g>
+
+  <!-- Main Title -->
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="-2">
+    AI Design
+  </text>
+  <text x="600" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="72" font-weight="800" fill="url(#accent)" letter-spacing="-2">
+    Tutorials
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="440" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#9898b0">
+    Practical AI Tools • Honest Reviews • Prompt Templates
+  </text>
+
+  <!-- Decorative line -->
+  <rect x="500" y="470" width="200" height="3" rx="1.5" fill="url(#cyan)"/>
+
+  <!-- Bottom CTA -->
+  <g transform="translate(600, 540)">
+    <text x="0" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#5c5c72">
+      aidesignlab.cc
+    </text>
+  </g>
+
+  <!-- AI icons decoration -->
+  <g transform="translate(80, 500)" opacity="0.6">
+    <circle cx="20" cy="20" r="16" fill="none" stroke="#a78bfa" stroke-width="2"/>
+    <circle cx="20" cy="20" r="4" fill="#a78bfa"/>
+  </g>
+  <g transform="translate(1080, 500)" opacity="0.6">
+    <circle cx="20" cy="20" r="16" fill="none" stroke="#06b6d4" stroke-width="2"/>
+    <circle cx="20" cy="20" r="4" fill="#06b6d4"/>
+  </g>
+</svg>
