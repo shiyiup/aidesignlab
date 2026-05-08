@@ -42,6 +42,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -93,12 +98,13 @@
       transition: background 0.3s;
     }
     .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 1.25rem;
-      background: linear-gradient(135deg, var(--accent-2), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.5px;
+      height: 36px;
+      width: auto;
+    }
+    .nav-logo img {
+      height: 100%;
+      width: auto;
+      object-fit: contain;
     }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
@@ -526,7 +532,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">aidesignlab.cc</div>
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="AI Design Lab"></a>
     <div class="nav-links">
       <a href="#tools">Tools</a>
       <a href="#articles">Articles</a>
