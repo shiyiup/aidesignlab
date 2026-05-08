@@ -98,13 +98,25 @@
       transition: background 0.3s;
     }
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       height: 36px;
-      width: auto;
     }
     .nav-logo img {
       height: 100%;
       width: auto;
       object-fit: contain;
+    }
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      background: linear-gradient(135deg, var(--accent-2), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
     }
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a {
@@ -532,7 +544,10 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo"><img src="logo.png" alt="AI Design Lab"></a>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="AI Design Lab">
+      <span class="nav-logo-text">aidesignlab.cc</span>
+    </a>
     <div class="nav-links">
       <a href="#tools">Tools</a>
       <a href="#articles">Articles</a>
