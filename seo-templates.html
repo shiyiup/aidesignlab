@@ -1,0 +1,365 @@
+<!-- 
+  AI Design Lab - SEO增强代码模板
+  使用说明：复制相应代码到HTML文件的 <head> 或文章内容区域
+  
+  最后更新: 2026-05-08
+-->
+
+<!-- ============================================
+     1. FAQ SCHEMA - 复制到文章body区域 (建议在FAQ部分下方)
+     ============================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can GPT Image 2 replace UI designers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPT Image 2 excels at design exploration and mood boards but struggles with pixel-perfect, production-ready UI. Best used as a brainstorming tool, not a replacement for Figma or professional designers. Our tests show it scores 4.5+/5 for concepts but drops to 2.8/5 for navigation menus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What UI elements does GPT Image 2 do best?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Based on our 8-scenario test: Onboarding flows (4.8/5), Auth screens (4.6/5), Empty states (4.4/5), and Product grids (4.3/5) are GPT Image 2's strongest areas. It struggles with data-heavy dashboards and navigation overlays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to write prompts for UI generation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Effective UI prompts include: 1) Specific UI type (mobile app/web dashboard), 2) Design language reference (iOS/Material/Figma-style), 3) Color theme (dark mode/light theme), 4) Key elements (navigation/buttons/cards), 5) Quality descriptors (minimalist/clean/professional). The more specific, the better the results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is GPT Image 2 free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GPT Image 2 is available through ChatGPT Pro at $20/month. It's not available on the free tier. For free alternatives with UI capabilities, consider Ideogram or wait for features to roll out to free users."
+      }
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================
+     2. BREADCRUMB SCHEMA - 复制到 <head> 区域
+     ============================================ -->
+<!-- 对于首页 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aidesignlab.cc"
+    }
+  ]
+}
+</script>
+
+<!-- 对于文章页面 (示例: gpt-image-2-ui-generation.html) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://aidesignlab.cc"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Articles",
+      "item": "https://aidesignlab.cc#articles"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "GPT Image 2 UI Generation"
+    }
+  ]
+}
+</script>
+
+
+<!-- ============================================
+     3. AUTHOR SCHEMA - 复制到 <head> 区域
+     ============================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Long Yu (龙御)",
+  "description": "UI Designer and AI Design Enthusiast. Creator of AI Design Lab.",
+  "url": "https://longyu2037.com",
+  "jobTitle": "UI Designer",
+  "knowsAbout": ["AI Design Tools", "UI/UX Design", "GPT Image 2", "Midjourney", "Figma"],
+  "sameAs": [
+    "https://twitter.com/longyu_design",
+    "https://github.com/longyu2037",
+    "https://linkedin.com/in/longyu"
+  ]
+}
+</script>
+
+
+<!-- ============================================
+     4. 增强型 ARTICLE SCHEMA - 替换现有schema
+     ============================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GPT Image 2 UI Generation: Can It Actually Replace Your Designer?",
+  "description": "I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can and cannot do.",
+  "image": [
+    "https://aidesignlab.cc/og-image.jpg",
+    "https://aidesignlab.cc/og-image.svg"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Long Yu (龙御)",
+    "url": "https://longyu2037.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI Design Lab",
+    "url": "https://aidesignlab.cc",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://aidesignlab.cc/og-image.jpg"
+    }
+  },
+  "datePublished": "2026-05-07",
+  "dateModified": "2026-05-08",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://aidesignlab.cc/gpt-image-2-ui-generation.html"
+  },
+  "articleSection": "AI Design Tutorials",
+  "keywords": ["GPT Image 2", "UI generation", "AI design tools", "AI UI design", "ChatGPT"],
+  "wordCount": 2500,
+  "timeRequired": "PT12M",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", "article .lead", "article h2"]
+  }
+}
+</script>
+
+
+<!-- ============================================
+     5. 内部链接增强HTML - 添加到文章底部
+     ============================================ -->
+<style>
+.related-articles {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.related-articles h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent-2);
+}
+.related-articles ul {
+  list-style: none;
+  padding: 0;
+}
+.related-articles li {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.related-articles li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.related-articles a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.related-articles a:hover {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+.related-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+</style>
+
+<div class="related-articles">
+  <h3>Continue Reading</h3>
+  <ul>
+    <li>
+      <a href="gpt-image-2-logo-icon.html">
+        <div class="related-icon">🔷</div>
+        <div>
+          <strong>GPT Image 2 Logo & Icon Design</strong>
+          <p style="margin:0;font-size:0.85rem;color:var(--text-3);">Can AI design your brand identity? 8 test cases rated.</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="ai-image-generator-comparison.html">
+        <div class="related-icon">⚖️</div>
+        <div>
+          <strong>AI Image Generator Comparison 2026</strong>
+          <p style="margin:0;font-size:0.85rem;color:var(--text-3);">Midjourney vs GPT Image 2 vs Ideogram — who wins?</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="prompt-to-production-workflow.html">
+        <div class="related-icon">🚀</div>
+        <div>
+          <strong>Prompt to Production Workflow</strong>
+          <p style="margin:0;font-size:0.85rem;color:var(--text-3);">The complete workflow from AI prompt to production assets.</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- ============================================
+     6. FAQ HTML组件 - 添加到文章内容底部
+     ============================================ -->
+<style>
+.faq-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.faq-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent-2);
+}
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.faq-question {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.faq-question::before {
+  content: 'Q';
+  background: var(--accent);
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.faq-answer {
+  color: var(--text-2);
+  line-height: 1.7;
+  padding-left: 2rem;
+}
+.faq-answer::before {
+  content: 'A';
+  color: var(--green);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+</style>
+
+<div class="faq-section">
+  <h3>Frequently Asked Questions</h3>
+  
+  <div class="faq-item">
+    <div class="faq-question">Can GPT Image 2 replace UI designers?</div>
+    <div class="faq-answer">
+      GPT Image 2 excels at design exploration and mood boards but struggles with pixel-perfect, production-ready UI. Best used as a brainstorming tool, not a replacement for Figma or professional designers.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">What UI elements does GPT Image 2 do best?</div>
+    <div class="faq-answer">
+      Based on our 8-scenario test: Onboarding flows (4.8/5), Auth screens (4.6/5), Empty states (4.4/5), and Product grids (4.3/5) are GPT Image 2's strongest areas.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">How to write effective prompts for UI generation?</div>
+    <div class="faq-answer">
+      Include: 1) Specific UI type (mobile/web), 2) Design language (iOS/Material), 3) Color theme, 4) Key elements needed, 5) Quality descriptors. The more specific, the better the results.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question">Is GPT Image 2 free to use?</div>
+    <div class="faq-answer">
+      GPT Image 2 is available through ChatGPT Pro at $20/month. It's not on the free tier. For free alternatives with UI capabilities, consider Ideogram.
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================
+     7. 图片ALT文本增强脚本 (可选)
+     ============================================ -->
+<script>
+// 自动为文章内图片添加描述性alt文本
+document.querySelectorAll('article img').forEach((img, index) => {
+  if (!img.alt || img.alt === '') {
+    const articleTitle = document.querySelector('h1').textContent;
+    const defaultAlts = [
+      `UI Design Example from ${articleTitle}`,
+      `Design mockup demonstration`,
+      `Visual example for design concept`
+    ];
+    img.alt = defaultAlts[index % defaultAlts.length];
+  }
+});
+</script>

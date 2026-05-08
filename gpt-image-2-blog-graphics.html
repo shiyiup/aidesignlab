@@ -85,6 +85,10 @@
     .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
     .case-notes:last-child { margin-bottom: 0; }
 
+    .case-image { margin: 1.5rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .case-image img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .case-image img:hover { transform: scale(1.02); }
+
     .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
     .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
     .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
@@ -160,6 +164,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a blog cover image about "AI design tools". Theme: AI is changing how designers work. Visual: a designer in dialogue with AI, screen showing design mockups and code. Style: modern, tech-forward but not cold. Colors: blue primary #1890ff, orange accent #fa8c16. Composition: horizontal 16:9, subject left, article title text space right. Quality: professional, suitable for tech blog. Resolution: 2000x900px.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-02-illustration-1.png" alt="GPT Image 2 generated AI design tools blog cover" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Detail: Needs Work</span></div>
           <p class="case-notes"><strong>What worked:</strong> Cover generated. Designer at computer, screen with UI mockups and code, AI dialogue bubbles nearby. Colors match requirements. Right side blank for title text.</p>
@@ -174,6 +181,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate an illustration of "designer workflow" for a blog article body. Content: show a designer's day from "receiving requirements" to "delivering design work". Style: flat illustration style, similar to popular blog illustrations. Colors: soft, don't compete with body text. Composition: horizontal wide image (suitable for blog body width). Details: include laptop, design software interface, coffee cup, sticky notes. Atmosphere: warm, organized.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-01-cover.png" alt="GPT Image 2 generated designer workflow illustration" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Mood: Excellent · Text Rendering: Limited</span></div>
@@ -190,6 +200,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a section divider element for a blog article. Function: separate two article sections. Style: minimalist, geometric, suitable for tech blog. Colors: primary #1890ff, transparent background. Size: 750px width (blog body width), 30px height. Design: centered symmetrical pattern, not complex, but with design feel. Output: transparent background PNG.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-03-illustration-2.png" alt="GPT Image 2 generated blog section divider" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Design: Good · Edge Quality: Average</span></div>
           <p class="case-notes"><strong>What worked:</strong> Divider element generated. Geometric, minimalist, transparent background included.</p>
@@ -204,6 +217,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate 3 cover images for an "AI Tool Review" article series. Requirements: unified style (modern tech feel, unified color scheme #1890ff primary, #52c41a accent); unified composition (subject centered, white space for title); 3 covers correspond to: (1) ChatGPT review, (2) Claude review, (3) GPT Image 2 review. Each cover's visual subject should be distinguishable (e.g., ChatGPT uses chat bubbles, Claude uses documents, GPT Image 2 uses images) but overall must look like "one set."</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-04-illustration-3.png" alt="GPT Image 2 generated series-consistent blog covers" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Series Feel: 70-80% · Precision: Needs Work</span></div>
@@ -220,6 +236,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a quote card image. Content: "Design is not about making things look good — it's about solving problems." — Kenya Hara. Style: minimalist, designed, suitable for blog body insertion. Colors: cream background #fefce8, dark text #262626. Typography: quotation marks and signature should have design treatment, not blunt. Size: 750px width, 400px height. Output: high-res, mobile-friendly.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-05-quote-card-1.png" alt="GPT Image 2 generated designer quote card" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text Rendering: Excellent · Typography: Average</span></div>
           <p class="case-notes"><strong>What worked:</strong> Quote card generated. "Design is not about making things look good..." text rendered correctly.</p>
@@ -234,6 +253,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate an info summary long-image with these points: Title: 2026 Designer Survival Guide. Points: (1) AI tools are assistants, not replacements; (2) Designers who master Vibe Coding have 30% salary premium; (3) Brand design ability, AI still can't learn; (4) Continuous learning is the only moat. Style: modern, infographic feel. Colors: professional, suitable for designer audience. Layout: clear bullet points, each with small icon. Size: 750px width, ~1200px height. Output: high-res, mobile-friendly.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-06-quote-card-2.png" alt="GPT Image 2 generated 2026 Designer Survival Guide info graphic" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Icon Consistency: Average</span></div>
@@ -250,6 +272,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "designer daily life" emoji pack, 6 emojis: (1) "8th revision — client says 'let's use the first version'" (frustrated face); (2) "Simple requirement, I don't care how to implement it" (shrug); (3) "Got it, will change right away" (fake smile); (4) "This color, a bit brighter / a bit darker" (speechless); (5) Designer's weekend (holding laptop in cafe); (6) Finally off work (running away). Style: cute, exaggerated, suitable for WeChat chat. Size: each emoji 240x240px. Output: 6 emojis arranged on one image for preview.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-07-data-card.png" alt="GPT Image 2 generated designer life emoji pack" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · "Meme" Feel: Not Perfect</span></div>
           <p class="case-notes"><strong>What worked:</strong> All 6 emojis generated. Topics like "8th revision," "simple requirement," "will change right away" — relatable for designers.</p>
@@ -264,6 +289,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a blog subscribe/follow guide image. Content: Left side: QR code area (left blank, manually added later). Right side: "Follow me for more AI design insights" (text). Arrow pointing to QR code area. Colors: warm, compelling (#1890ff primary, #fa8c16 accent). Style: minimalist, not flashy, text stands out. Size: 750px width, 200px height. Output: transparent background PNG (QR code area left blank).</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/blog-08-step-card.png" alt="GPT Image 2 generated blog subscribe guide" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Excellent · Blank Area: Correct</span></div>

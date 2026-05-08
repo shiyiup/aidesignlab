@@ -9,28 +9,64 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aidesignlab.cc"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://aidesignlab.cc#articles"},
+      {"@type": "ListItem", "position": 3, "name": "GPT Image 2 UI Generation"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "Article",
     "headline": "GPT Image 2 UI Generation: Can It Actually Replace Your Designer?",
     "description": "I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can and cannot do.",
     "image": "https://aidesignlab.cc/og-image.jpg",
     "author": {
-      "@type": "Organization",
-      "name": "AI Design Lab"
+      "@type": "Person",
+      "name": "Long Yu (龙御)",
+      "description": "UI Designer and AI Design Enthusiast. Creator of AI Design Lab.",
+      "url": "https://longyu2037.com",
+      "jobTitle": "UI Designer",
+      "knowsAbout": ["AI Design Tools", "UI/UX Design", "GPT Image 2", "Figma"]
     },
     "publisher": {
       "@type": "Organization",
       "name": "AI Design Lab",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://aidesignlab.cc/og-image.jpg"
-      }
+      "url": "https://aidesignlab.cc"
     },
-    "datePublished": "2026-05-07",
-    "dateModified": "2026-05-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://aidesignlab.cc/gpt-image-2-ui-generation.html"
-    }
+    "datePublished": "2026-04-30",
+    "dateModified": "2026-05-08",
+    "articleSection": "AI Design Tutorials",
+    "keywords": ["GPT Image 2", "UI generation", "AI design tools", "AI UI design"]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can GPT Image 2 replace UI designers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "GPT Image 2 is a powerful design exploration tool, not a production replacement. It excels at illustration-style UI, auth screens, empty states, and conceptual mood boards (4.3-4.6 scores). It struggles with data-heavy dashboards and navigation overlays (2.5-3.5 scores). Best used as a brainstorming partner, not a Figma replacement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What UI elements does GPT Image 2 do best?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Based on 8 scenario tests: Onboarding flows (4.8), auth pages (4.6), empty states (4.4), and product grids (4.3) are GPT Image 2's strongest areas. It also handles mobile interfaces well (4.0-4.5). Navigation menus and analytics dashboards are its weakest categories."
+        }
+      }
+    ]
   }
   </script>
 
@@ -92,14 +128,19 @@
     .case-header h3 { font-size: 1.15rem; font-weight: 700; margin: 0; }
     .case-prompt { padding: 1.5rem; background: var(--bg-2); border-bottom: 1px solid var(--border); }
     .case-prompt-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
-    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; }
+    .case-prompt-text { font-family: 'DM Mono', monospace; font-size: 0.875rem; color: var(--text-2); line-height: 1.7; white-space: pre-wrap; }
     .case-body { padding: 1.5rem; }
     .case-result { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: center; }
     .result-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
     .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
     .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
     .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
-    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; }
+    .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
+    .case-notes:last-child { margin-bottom: 0; }
+
+    .case-image { margin: 1.5rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .case-image img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .case-image img:hover { transform: scale(1.02); }
 
     .rating-bar { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
     .rating-label { font-size: 0.8rem; color: var(--text-3); width: 80px; }
@@ -143,6 +184,7 @@
       .article-header { padding: 7rem 1rem 2rem; }
       .article-body { padding: 0 1rem 3rem; }
       .next-article { flex-direction: column; align-items: flex-start; }
+      .case-image { margin: 1rem; }
     }
   </style>
 </head>
@@ -167,11 +209,10 @@
       <div class="article-meta">
         <span class="meta-tag ai">GPT Image 2</span>
         <span class="meta-tag">UI Design</span>
-        <span>⏱️ 12 min read</span>
-        <span>📅 May 2026</span>
+        <span class="meta-tag">Prompt Sharing</span>
       </div>
       <h1>GPT Image 2 UI Generation: Can It Actually Replace Your Designer?</h1>
-      <p class="lead">I tested 8 different UI scenarios with GPT Image 2 — from mobile apps to dashboard interfaces. Here's the honest truth about what it can do, what it can't do, and when you should still reach for Figma.</p>
+      <p class="lead">I spent a whole day testing 8 UI scenarios with GPT Image 2 — from generating full interfaces with a single prompt to replicating known app styles. Every prompt is included so you can copy them directly.</p>
       <div class="author">
         <div class="author-avatar">龙</div>
         <div class="author-info">
@@ -182,48 +223,40 @@
     </header>
 
     <div class="article-body">
-      <h2>The Test Setup</h2>
-      <p>Before we dive in, here's my testing approach: I used <strong>GPT-4o with Image 2 generation</strong> across 8 different UI scenarios — mobile apps, web dashboards, onboarding flows, settings pages, and more. Each prompt was written to be as specific as possible (because vague prompts = vague results).</p>
-      <p>I'm evaluating on three dimensions:</p>
-      <p><strong>Layout Accuracy</strong> — Does the generated interface have a logical, usable layout?<br>
-      <strong>Typography Clarity</strong> — Are the text elements readable and properly sized?<br>
-      <strong>Workflow Utility</strong> — Can this actually be used in a real design process?</p>
+      <h2>The Verdict First</h2>
+      <p>GPT Image 2 for UI generation is <strong>usable, but not ready for direct delivery</strong>.</p>
+      <p><strong>Strengths:</strong></p>
+      <ul style="margin-left: 1.5rem; color: var(--text-2); margin-bottom: 1.5rem;">
+        <li>Chinese text rendering is finally accurate — buttons won't show garbled text anymore</li>
+        <li>Understands natural language like "参考微信风格" or "follow Material Design guidelines"</li>
+        <li>Generated interfaces have design sense, not that obvious "AI slop" look</li>
+      </ul>
+      <p><strong>Weaknesses:</strong></p>
+      <ul style="margin-left: 1.5rem; color: var(--text-2); margin-bottom: 1.5rem;">
+        <li>Detail precision isn't enough — still needs designer tweaking for real projects</li>
+        <li>Consistency control is unstable — two generations might differ significantly</li>
+        <li>Complex interactive pages (like multi-level nested forms) tend to break</li>
+      </ul>
+      <p><strong>My take: GPT Image 2 is great for UI inspiration and drafts, not suitable as a final deliverable.</strong></p>
 
-      <h2>Case 01: Fitness Tracking Mobile App</h2>
+      <h2>Case 01: One-Prompt Full UI — Music App Player</h2>
       <div class="case-card">
         <div class="case-header">
           <div class="case-number">Case 01 / 08</div>
-          <h3>Mobile App Screen — Fitness Tracker</h3>
+          <h3>One-Prompt Full UI Generation — Music App Player</h3>
         </div>
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A modern fitness tracking mobile app screen, dark theme, showing weekly running statistics with a heart rate graph, clean minimalist UI, iOS design language, bottom navigation bar with icons for Home, Activity, Stats, Profile</div>
+          <div class="case-prompt-text">Generate a dark mode music app playback page, with:
+- Top: back button, song name, artist name
+- Middle: album cover (circular, with rotation animation effect)
+- Bottom: progress bar (showing current time 3:24 / total 4:56)
+- Bottom: 5 control buttons - shuffle, previous, play/pause, next, repeat
+- Very bottom: volume slider and device connection icon
+Overall style: dark (#1a1a2e), neon glow effect, tech feel</div>
         </div>
-        <div class="case-body">
-          <div class="case-result">
-            <span class="result-badge badge-pass">PASS</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Good · Utility: High</span>
-          </div>
-          <div class="rating-bar">
-            <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:90%"></div></div>
-            <span class="score green">4.5/5</span>
-          </div>
-          <p class="case-notes"><strong>What worked:</strong> The layout was clean and usable. The dark theme rendered beautifully with good contrast ratios. The bottom navigation bar had recognizable icons.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> The heart rate graph was a bit abstract — more of an artistic interpretation than an actual data visualization. The "Stats" icon was slightly off-center.</p>
-          <p class="case-notes"><strong>Best use:</strong> Wireframe exploration and mood board inspiration. Don't expect pixel-perfect production files.</p>
-        </div>
-      </div>
-
-      <h2>Case 02: SaaS Analytics Dashboard</h2>
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-number">Case 02 / 08</div>
-          <h3>Web Dashboard — E-commerce Analytics</h3>
-        </div>
-        <div class="case-prompt">
-          <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">SaaS analytics dashboard for an e-commerce store, showing revenue chart, top products list, and customer map, dark mode, Figma-style clean design, sidebar navigation, top metrics cards with numbers and percentage change indicators</div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-01-music-player.png" alt="GPT Image 2 generated dark mode music app player" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
@@ -232,128 +265,36 @@
           </div>
           <div class="rating-bar">
             <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill mid" style="width:65%"></div></div>
-            <span class="score yellow">3.3/5</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:70%"></div></div>
+            <span class="score yellow">3.5/5</span>
           </div>
-          <p class="case-notes"><strong>What worked:</strong> The overall structure was recognizable as a dashboard. The sidebar navigation was functional-looking.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> The data visualization was too "artistic" — the numbers and chart elements looked decorative rather than realistic. The "customer map" was basically abstract blobs.</p>
-          <p class="case-notes"><strong>Best use:</strong> Pitch deck slides and stakeholder presentations. Not suitable for actual data-driven product work.</p>
+          <p class="case-notes"><strong>What worked:</strong> The interface came out with everything included. Album cover is indeed circular, progress bar position is correct, buttons are all there.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Hierarchy between artist and song name isn't clear enough, font size difference is too small. The "3:24/4:56" time rendered accurately but the font is too thin, not prominent enough on dark background. Neon glow effect is there but colors are a bit too saturated — you'd need to desaturate for real projects.</p>
+          <p class="case-notes"><strong>Best use:</strong> One-prompt UI generation gets you to 70%. The remaining 30% needs designer adjustment.</p>
         </div>
       </div>
 
-      <h2>Case 03: Onboarding Flow Screens</h2>
+      <h2>Case 02: Wireframe to High-Fidelity — E-commerce Product Detail</h2>
       <div class="case-card">
         <div class="case-header">
-          <div class="case-number">Case 03 / 08</div>
-          <h3>Mobile Onboarding — 3-Step Flow</h3>
+          <div class="case-number">Case 02 / 08</div>
+          <h3>Wireframe to High-Fidelity — E-commerce Product Page</h3>
+        </div>
+        <p style="color: var(--text-2); margin-bottom: 1rem;"><strong>Steps:</strong> Draw a simple wireframe first, then upload and describe the high-fidelity result you want.</p>
+        <div class="case-image">
+          <img src="images/2026-04/ui-02-prototype.png" alt="Hand-drawn wireframe prototype" loading="lazy">
         </div>
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A mobile app onboarding screen 1 of 3, clean white background, large friendly illustration of a plant growing, headline "Grow Your Skills Every Day", subtitle text below, page indicator dots at the bottom, soft pastel colors, approachable modern design</div>
+          <div class="case-prompt-text">Based on this wireframe, generate a high-fidelity e-commerce app product detail page:
+- Keep layout and element positions from the wireframe
+- Change colors to warm palette (primary #ff6b35, secondary #ffa07a)
+- Product images: realistic product photography style
+- Add subtle shadow and rounded corners (8px) to buttons
+- Overall style: modern, clean</div>
         </div>
-        <div class="case-body">
-          <div class="case-result">
-            <span class="result-badge badge-pass">PASS</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Excellent · Utility: High</span>
-          </div>
-          <div class="rating-bar">
-            <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:95%"></div></div>
-            <span class="score green">4.8/5</span>
-          </div>
-          <p class="case-notes"><strong>What worked:</strong> This was surprisingly excellent. The illustration was charming, the text rendered correctly, and the overall composition was balanced. One of the best results in this test.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> The CTA button wasn't consistently placed across generated variants. Minor inconsistency.</p>
-          <p class="case-notes"><strong>Best use:</strong> Landing page illustrations, onboarding screens, empty states. Highly recommended for marketing-focused design work.</p>
-        </div>
-      </div>
-
-      <h2>Case 04: Settings Page</h2>
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-number">Case 04 / 08</div>
-          <h3>Mobile Settings — Account & Privacy</h3>
-        </div>
-        <div class="case-prompt">
-          <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A clean settings page on a smartphone, showing account profile section at top with avatar and name, followed by grouped settings items with icons, toggle switches for notifications and privacy options, chevron arrows for navigation items, iOS Settings app style, light theme</div>
-        </div>
-        <div class="case-body">
-          <div class="case-result">
-            <span class="result-badge badge-pass">PASS</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Good · Utility: Medium-High</span>
-          </div>
-          <div class="rating-bar">
-            <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:80%"></div></div>
-            <span class="score green">4.0/5</span>
-          </div>
-          <p class="case-notes"><strong>What worked:</strong> The grouped list structure was recognizable and functional. The toggle switches looked realistic.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> Avatar placeholders tended to show abstract faces rather than user avatars. Group headers sometimes had inconsistent formatting.</p>
-          <p class="case-notes"><strong>Best use:</strong> Wireframe concepts for settings pages. Useful for communicating structure to stakeholders before detailed design.</p>
-        </div>
-      </div>
-
-      <h2>Case 05: E-commerce Product Listing</h2>
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-number">Case 05 / 08</div>
-          <h3>Mobile Product Grid — Shopping App</h3>
-        </div>
-        <div class="case-prompt">
-          <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A mobile shopping app product listing page, 2-column grid layout, each card shows product image, brand name, product title, price with discount strikethrough, add to cart button, clean white background, Pinterest-meets-shopify aesthetic, soft shadows on cards</div>
-        </div>
-        <div class="case-body">
-          <div class="case-result">
-            <span class="result-badge badge-pass">PASS</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Mixed · Utility: High</span>
-          </div>
-          <div class="rating-bar">
-            <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:85%"></div></div>
-            <span class="score green">4.3/5</span>
-          </div>
-          <p class="case-notes"><strong>What worked:</strong> The 2-column grid layout was well-executed. Product card composition was clean. Pricing display was accurate.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> Product images sometimes showed unusual artifacts (clothes with extra limbs, accessories floating). The strikethrough price was occasionally not rendered correctly.</p>
-          <p class="case-notes"><strong>Best use:</strong> Mood boards for product page layouts. Great for communicating e-commerce design direction.</p>
-        </div>
-      </div>
-
-      <h2>Case 06: Login / Sign Up Screen</h2>
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-number">Case 06 / 08</div>
-          <h3>Auth Screen — Modern Login</h3>
-        </div>
-        <div class="case-prompt">
-          <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A modern mobile login screen, centered form with email input field, password input field, large primary login button, social login options (Google, Apple) below, "Forgot Password?" link, clean minimal design, subtle gradient background, professional SaaS aesthetic</div>
-        </div>
-        <div class="case-body">
-          <div class="case-result">
-            <span class="result-badge badge-pass">PASS</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Excellent · Utility: High</span>
-          </div>
-          <div class="rating-bar">
-            <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:92%"></div></div>
-            <span class="score green">4.6/5</span>
-          </div>
-          <p class="case-notes"><strong>What worked:</strong> This was one of the best results. The form elements were clean, well-spaced, and realistic. The social login icons looked official.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> Very minor — occasionally the input field placeholder text was gibberish rather than helpful labels like "Enter your email".</p>
-          <p class="case-notes"><strong>Best use:</strong> Production-ready inspiration for auth screens. Some results are close enough to use as direct design references.</p>
-        </div>
-      </div>
-
-      <h2>Case 07: Empty State</h2>
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-number">Case 07 / 08</div>
-          <h3>Empty State — No Notifications</h3>
-        </div>
-        <div class="case-prompt">
-          <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A friendly empty state screen for a notifications app, large centered illustration of an inbox with a sleeping cat, headline "You're all caught up!", subtitle "No new notifications right now", small ghost button "Refresh", pastel color scheme, playful rounded design, friendly 3D illustration style</div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-02-ecommerce-result.png" alt="GPT Image 2 generated high-fidelity e-commerce page" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
@@ -362,47 +303,253 @@
           </div>
           <div class="rating-bar">
             <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill high" style="width:88%"></div></div>
-            <span class="score green">4.4/5</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:80%"></div></div>
+            <span class="score green">4.0/5</span>
           </div>
-          <p class="case-notes"><strong>What worked:</strong> The illustration was delightful and exactly what was asked for. The text was readable and the layout was balanced.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> The 3D style was sometimes inconsistent — some elements looked flat while others were rendered with depth.</p>
-          <p class="case-notes"><strong>Best use:</strong> Empty states, error pages, 404 pages. GPT Image 2 handles illustration-style UI better than data-heavy UI.</p>
+          <p class="case-notes"><strong>What worked:</strong> Element positions from the wireframe were mostly respected. Colors changed to warm palette as requested. Button shadows and rounded corners are there — no need to manually add in Photoshop.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> If wireframe is too rough (like sketchy hand-drawn), AI might misinterpret. Generated image is raster, not vector — less flexible for later edits.</p>
+          <p class="case-notes"><strong>Best use:</strong> Draw a rough layout in Figma or MasterGo, let GPT Image 2 output high-fidelity visuals. <strong>One of the most practical use cases.</strong></p>
         </div>
       </div>
 
-      <h2>Case 08: Navigation Menu</h2>
+      <h2>Case 03: Replicating Known App Style — WeChat-Style Enterprise Chat</h2>
       <div class="case-card">
         <div class="case-header">
-          <div class="case-number">Case 08 / 08</div>
-          <h3>Hamburger Menu — Mobile Navigation</h3>
+          <div class="case-number">Case 03 / 08</div>
+          <h3>Replicating Known App Style — WeChat-Style Enterprise Chat</h3>
         </div>
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
-          <div class="case-prompt-text">A mobile hamburger menu drawer, dark overlay background, white menu panel sliding in from left, user profile section at top, list of navigation items with icons (Home, Search, Library, Playlists, Settings, Help), logout option at bottom, clean minimal design, Material Design 3 style</div>
+          <div class="case-prompt-text">Reference WeChat chat interface design style, generate an enterprise IM app chat page:
+- Overall layout: top title bar, middle message area, bottom input box (same as WeChat)
+- Colors: enterprise blue (#1890ff)
+- Message bubble style: reference WeChat, but change corner radius to 12px
+- Add "read" / "unread" status indicators
+- Add "+" icon on left of input box to expand more features</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-03-wechat-style.png" alt="GPT Image 2 generated WeChat-style enterprise chat interface" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
             <span class="result-badge badge-partial">PARTIAL</span>
-            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Okay · Typography: Okay · Utility: Low</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Mixed · Utility: Medium</span>
           </div>
           <div class="rating-bar">
             <span class="rating-label">Overall</span>
-            <div class="rating-track"><div class="rating-fill mid" style="width:55%"></div></div>
-            <span class="score yellow">2.8/5</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:70%"></div></div>
+            <span class="score yellow">3.5/5</span>
           </div>
-          <p class="case-notes"><strong>What worked:</strong> The concept was there — dark overlay, menu panel, icons.</p>
-          <p class="case-notes"><strong>What didn't work:</strong> Navigation menu overlays are a weak point. The icons often didn't match their labels, and the "slide-in" effect was lost in a static image. List items tended to look repetitive.</p>
-          <p class="case-notes"><strong>Best use:</strong> Conceptual mood board only. Don't rely on this for navigation pattern inspiration.</p>
+          <p class="case-notes"><strong>What worked:</strong> WeChat style is about 70-80% there. Message bubble style, input bar layout — you can immediately tell it "referenced WeChat".</p>
+          <p class="case-notes"><strong>What didn't work:</strong> "Read/unread" indicators are in weird positions — on the right side of bubbles instead of the usual below the time. Overall feels like "WeChat style home page, but something's off" — a subtle sense of wrongness.</p>
+          <p class="case-notes"><strong>Best use:</strong> AI can achieve "spiritual resemblance" in style replication, but "formal resemblance" isn't precise enough. Use this method for inspiration if you want something "with that WeChat flavor". For pixel-perfect replication, do it manually.</p>
         </div>
       </div>
 
-      <div class="verdict-box">
-        <h3>The Verdict</h3>
-        <p><strong>GPT Image 2 is a powerful design exploration tool, not a production replacement.</strong></p>
-        <p>It excels at: illustration-style UI, auth screens, empty states, onboarding flows, and conceptual mood boards.</p>
-        <p>It struggles with: data-heavy dashboards, navigation overlays, complex list structures, and anything requiring pixel-perfect alignment.</p>
-        <p>The best workflow? <strong>Use it to explore directions fast, then refine in Figma.</strong></p>
+      <h2>Case 04: UI Component Library — E-commerce App Components</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 04 / 08</div>
+          <h3>UI Component Library Generation — E-commerce App</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a complete e-commerce app UI component library:
+1. Buttons (primary, secondary, text; 3 states: default, pressed, disabled)
+2. Cards (product card, article card, user card)
+3. Tags (normal tag, selectable tag, removable tag)
+4. Input fields (single-line, multi-line, search bar)
+5. Switch, checkbox, radio button
+
+Unified requirements:
+- Primary color #ff6b35, secondary #f5f5f5, text #333
+- Unified corner radius 8px
+- Unified shadow: 0 2px 8px rgba(0,0,0,0.1)
+- Arrange all components on one image for display</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-04-component-library.png" alt="GPT Image 2 generated e-commerce UI component library" loading="lazy">
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-fail">FAIL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Messy · Typography: Inconsistent · Utility: Low</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill low" style="width:50%"></div></div>
+            <span class="score red">2.5/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All components were generated. Three button states, three card types — everything was requested.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Consistency is lacking. Although you required unified 8px corner radius, some components look like 8px, some look like 12px, some like 4px. Shadow effects also vary. Components arranged on one image but layout is messy — doesn't look like proper component library documentation.</p>
+          <p class="case-notes"><strong>Best use:</strong> The direction is correct, but <strong>GPT Image 2 currently can't handle "precise consistency control"</strong>. Recommend building component libraries manually in Figma. GPT Image 2 is better for "finding component design inspiration", not outputting final usable component libraries.</p>
+        </div>
+      </div>
+
+      <h2>Case 05: Specific Design Style — Cyberpunk Fitness App</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 05 / 08</div>
+          <h3>Specific Design Style — Cyberpunk Fitness App</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a cyberpunk-style fitness app homepage:
+- Colors: dark background (#0a0e27) + neon blue (#00f0ff) + neon pink (#ff00ff)
+- Fonts: futuristic strong sans-serif
+- Elements: data visualization (daily exercise data, displayed with neon-colored charts)
+- Buttons and cards with neon glow effects
+- Overall atmosphere: sci-fi, cool</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-05-cyberpunk-fitness.png" alt="GPT Image 2 generated cyberpunk style fitness app" loading="lazy">
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-pass">PASS</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Great · Typography: Good · Utility: High</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill high" style="width:80%"></div></div>
+            <span class="score green">4.0/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> AI understands that cyberpunk vibe. Dark background + neon colors — generated interface looks like UI from Cyberpunk 2077. Data visualization charts are there, neon glow effects achieved.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Neon glow effects are a bit overdone — might be too glaring for actual app use. "Futuristic font" requirement AI didn't quite understand — still using regular sans-serif. Overall visual impact is cool but usability is average — text and background contrast might not be enough for extended reading.</p>
+          <p class="case-notes"><strong>Best use:</strong> If you want a "visually impactful" stylized interface, GPT Image 2 works great. But for everyday utility apps, this strong style might sacrifice usability.</p>
+        </div>
+      </div>
+
+      <h2>Case 06: Cross-Platform UI — iOS vs Android Weather App</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 06 / 08</div>
+          <h3>Cross-Platform UI — iOS vs Android Weather App</h3>
+        </div>
+        <p style="color: var(--text-2); margin-bottom: 1rem;"><strong>iOS Prompt:</strong></p>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a weather app homepage, iOS style:
+- Follow iOS Human Interface Guidelines
+- Status bar: time, signal, battery (iOS style)
+- Navigation: bottom tab bar (4 tabs: Today, Forecast, City, Settings)
+- Fonts: SF Pro style
+- Corner radius: unified 12px (iOS style)</div>
+        </div>
+        <p style="color: var(--text-2); margin: 1rem 0 1rem;"><strong>Android Prompt:</strong></p>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a weather app homepage, Android Material Design 3 style:
+- Follow Material Design 3 guidelines
+- Top: Material You style top app bar
+- Navigation: bottom navigation bar (same 4 tabs as iOS version)
+- Fonts: Roboto style
+- Corner radius: unified 20px (Material 3 large radius)
+- Colors: dynamic color (derived from weather conditions)</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-06-ios-weather.png" alt="GPT Image 2 generated iOS style weather app" loading="lazy">
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-06-android-weather.png" alt="GPT Image 2 generated Android Material Design 3 style weather app" loading="lazy">
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Mixed · Utility: Medium</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:70%"></div></div>
+            <span class="score yellow">3.5/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> iOS and Android versions do show differences — AI can distinguish two different design languages. iOS version corner radius does look smaller (around 12px feel), Android version has larger radius.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> Strictly speaking, if you compare against iOS HIG and Material Design specs, the generated interface only has "that flavor" — detail spec compliance isn't strict enough.</p>
+          <p class="case-notes"><strong>Best use:</strong> Cross-platform UI generation is <strong>good for quickly creating demo slides that "look like iOS/Android"</strong>. For formal projects requiring strict platform spec compliance, manual review is still needed.</p>
+        </div>
+      </div>
+
+      <h2>Case 07: Design System Compliance — Notes App Editor</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 07 / 08</div>
+          <h3>Design System Compliance — Notes App Editor</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate a notes app editor page following this design system:
+
+[Grid System] 8px baseline grid
+[Spacing] Component spacing 16px, page margin 24px
+[Type Scale]
+  - Heading: 20px, bold, line-height 28px
+  - Body: 16px, regular, line-height 24px
+  - Caption: 12px, light gray #999
+[Colors]
+  - Background: #ffffff
+  - Primary: #1890ff
+  - Divider: #f0f0f0
+[Components] Toolbar (format brush, bold, italic, underline, insert image, insert link)
+
+Output a complete editor page, strictly following the above specs.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-07-notes-app.png" alt="GPT Image 2 generated notes app editor following design system" loading="lazy">
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Good · Utility: Medium</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:70%"></div></div>
+            <span class="score yellow">3.5/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> AI's understanding of design specs is better than I expected. 8px grid, 16px spacing, 24px margin — generated image basically follows these numerical requirements. Type scale shows hierarchy, headings are indeed larger and bolder.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> You required "strictly follow specs" but some spacing in generated interface doesn't look like strict 16px — AI might have compromised between "aesthetic sense" and "strict execution". Toolbar icons have inconsistent styles — some realistic, some flat.</p>
+          <p class="case-notes"><strong>Best use:</strong> GPT Image 2 can understand design specs but can't guarantee 100% strict execution. Good for "generating drafts by spec", but final review by designer is still needed.</p>
+        </div>
+      </div>
+
+      <h2>Case 08: Complete App Page Flow — Accounting App</h2>
+      <div class="case-card">
+        <div class="case-header">
+          <div class="case-number">Case 08 / 08</div>
+          <h3>Complete App Page Flow — Accounting App</h3>
+        </div>
+        <div class="case-prompt">
+          <div class="case-prompt-label">Prompt</div>
+          <div class="case-prompt-text">Generate 4 core pages of an accounting app, arranged on one image:
+
+Page 1: Home (monthly expense overview, category expense pie chart, recent transactions list)
+Page 2: Add Entry (amount input, category selection, date selection, note input, save button)
+Page 3: Stats (monthly expense trend line chart, category ranking bar chart, yearly comparison)
+Page 4: Profile (avatar, nickname, monthly goal, export data, settings entry)
+
+Requirements:
+- 4 pages with unified style (colors, fonts, corner radius)
+- Logical connections between pages
+- Overall colors: light gray background (#f5f5f5) + theme blue (#1890ff)
+- Style: modern, clean, utility app feel</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ui-08-accounting-app.png" alt="GPT Image 2 generated complete accounting app page flow" loading="lazy">
+        </div>
+        <div class="case-body">
+          <div class="case-result">
+            <span class="result-badge badge-partial">PARTIAL</span>
+            <span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Typography: Good · Utility: Medium</span>
+          </div>
+          <div class="rating-bar">
+            <span class="rating-label">Overall</span>
+            <div class="rating-track"><div class="rating-fill mid" style="width:70%"></div></div>
+            <span class="score yellow">3.5/5</span>
+          </div>
+          <p class="case-notes"><strong>What worked:</strong> All 4 pages generated, unified style basically achieved. Home, Add Entry, Stats, Profile — all elements are there.</p>
+          <p class="case-notes"><strong>What didn't work:</strong> The 4 pages "look like a set" but looking closely you'll notice inconsistent details. For example, home page card corner radius is 8px, but chart cards on stats page look like 12px.</p>
+          <p class="case-notes"><strong>Best use:</strong> This approach is <strong>good for project proposal "overview display"</strong> — letting clients see at a glance what pages the app has. But high-fidelity prototypes for each page are still recommended to generate and optimize separately.</p>
+        </div>
       </div>
 
       <h2>Summary Table</h2>
@@ -411,8 +558,6 @@
           <tr>
             <th>Case</th>
             <th>UI Type</th>
-            <th>Layout</th>
-            <th>Typography</th>
             <th>Utility</th>
             <th>Score</th>
           </tr>
@@ -420,93 +565,78 @@
         <tbody>
           <tr>
             <td>01</td>
-            <td>Fitness Tracker</td>
-            <td class="score green">Great</td>
-            <td class="score green">Good</td>
-            <td class="score green">High</td>
-            <td class="score green">4.5</td>
+            <td>One-Prompt Full UI</td>
+            <td>★★★☆☆</td>
+            <td class="score yellow">3.5/5</td>
           </tr>
           <tr>
             <td>02</td>
-            <td>Analytics Dashboard</td>
-            <td class="score yellow">Good</td>
-            <td class="score yellow">Mixed</td>
-            <td class="score yellow">Medium</td>
-            <td class="score yellow">3.3</td>
+            <td>Wireframe → High-Fidelity</td>
+            <td>★★★★☆</td>
+            <td class="score green">4.0/5</td>
           </tr>
           <tr>
             <td>03</td>
-            <td>Onboarding Flow</td>
-            <td class="score green">Great</td>
-            <td class="score green">Excellent</td>
-            <td class="score green">High</td>
-            <td class="score green">4.8</td>
+            <td>Replicate Known App</td>
+            <td>★★★☆☆</td>
+            <td class="score yellow">3.5/5</td>
           </tr>
           <tr>
             <td>04</td>
-            <td>Settings Page</td>
-            <td class="score green">Good</td>
-            <td class="score green">Good</td>
-            <td class="score green">Medium-High</td>
-            <td class="score green">4.0</td>
+            <td>Component Library</td>
+            <td>★★☆☆☆</td>
+            <td class="score red">2.5/5</td>
           </tr>
           <tr>
             <td>05</td>
-            <td>Product Grid</td>
-            <td class="score green">Great</td>
-            <td class="score yellow">Mixed</td>
-            <td class="score green">High</td>
-            <td class="score green">4.3</td>
+            <td>Specific Style UI</td>
+            <td>★★★★☆</td>
+            <td class="score green">4.0/5</td>
           </tr>
           <tr>
             <td>06</td>
-            <td>Login / Sign Up</td>
-            <td class="score green">Great</td>
-            <td class="score green">Excellent</td>
-            <td class="score green">High</td>
-            <td class="score green">4.6</td>
+            <td>Cross-Platform UI</td>
+            <td>★★★☆☆</td>
+            <td class="score yellow">3.5/5</td>
           </tr>
           <tr>
             <td>07</td>
-            <td>Empty State</td>
-            <td class="score green">Great</td>
-            <td class="score green">Good</td>
-            <td class="score green">High</td>
-            <td class="score green">4.4</td>
+            <td>By Spec Generation</td>
+            <td>★★★☆☆</td>
+            <td class="score yellow">3.5/5</td>
           </tr>
           <tr>
             <td>08</td>
-            <td>Navigation Menu</td>
-            <td class="score yellow">Okay</td>
-            <td class="score yellow">Okay</td>
-            <td class="score red">Low</td>
-            <td class="score yellow">2.8</td>
+            <td>Complete Page Flow</td>
+            <td>★★★☆☆</td>
+            <td class="score yellow">3.5/5</td>
           </tr>
         </tbody>
       </table>
-      <p style="text-align:center;color:var(--text-3);font-size:0.875rem;">Average Score: <strong style="color:var(--accent-2)">4.1 / 5.0</strong></p>
 
-      <h2>My Recommended Workflow</h2>
-      <p>Here's how I actually use GPT Image 2 in my UI design process:</p>
-      <p><strong>Step 1 — Explore directions (GPT Image 2):</strong> Generate 5-10 UI variants for a screen in under 5 minutes. Find the direction that feels right.</p>
-      <p><strong>Step 2 — Extract insights (You):</strong> Note what works: layout patterns, color combinations, component styles. These become your design decisions.</p>
-      <p><strong>Step 3 — Build properly (Figma/Code):</strong> Take the direction to Figma or your component library. Build it right — with accessibility, spacing, and real data.</p>
-      <p>The key insight: <strong>GPT Image 2 is a brainstorming partner, not a replacement for design judgment.</strong> It accelerates exploration; it doesn't eliminate expertise.</p>
+      <div class="verdict-box">
+        <h3>My Honest Takeaways</h3>
+        <p>After testing these 8 scenarios, I think GPT Image 2's biggest value in UI generation is <strong>not "replacing designers" but "making designer ideas visualize faster"</strong>.</p>
+        <p>Before, if you had a UI idea, you'd need to open Figma, set up grids, adjust components — spending half an hour just to see a rough draft. Now you spend 30 seconds writing a prompt, and in one minute you can see 4 different options.</p>
+        <p>This efficiency difference is the real dividend AI brings to designers.</p>
+        <p>But another thing is clear: <strong>AI-generated UI still can't reach "direct delivery" quality</strong>. Detail precision, consistency control, platform spec compliance — these still need human touch.</p>
+        <p><strong>My recommendation: Use GPT Image 2 to quickly explore directions, use Figma to refine the final draft. AI handles breadth of inspiration, humans handle depth of quality control.</strong></p>
+      </div>
 
       <div class="next-article">
         <div>
-          <div class="next-article-text">Next in the Series</div>
-          <a href="gpt-image-2-logo-icon.html" class="next-article-title">GPT Image 2 Logo & Icon Series — Can AI Design Your Brand?</a>
+          <div class="next-article-text">Next in Series</div>
+          <div class="next-article-title">GPT Image 2 Logo & Icon Series — Can AI Solve the "Icon Consistency" Problem Designers Hate?</div>
         </div>
         <div class="next-article-arrow">→</div>
       </div>
+
     </div>
   </article>
 
   <footer>
-    <p>&copy; 2026 <strong>AI Design Lab</strong> — aidesignlab.cc</p>
-    <p><a href="index.html">Home</a> · <a href="index.html#tools">Tools</a> · <a href="index.html#prompts">Prompts</a></p>
+    <p>Author: Long Yu (龙御) · Series: GPT Image 2 Review (8 articles)</p>
+    <p>Questions or thoughts? Let's discuss in the comments!</p>
   </footer>
-
 </body>
 </html>

@@ -3,34 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GPT Image 2 Logo & Icon Series — Can AI Design Your Brand? — AI Design Lab</title>
-  <meta name="description" content="Tested 8 logo and icon generation scenarios with GPT Image 2. Here's the honest truth: AI can explore directions, but consistency is still the weak point.">
+  <title>GPT Image 2 Logo & Icon Design: 8 Test Cases | AI Design Lab</title>
+  <meta name="description" content="Tested 8 logo and icon scenarios with GPT Image 2. AI can explore directions, but consistency is still the weak point. Honest ratings and prompts included.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aidesignlab.cc"},
+      {"@type": "ListItem", "position": 2, "name": "Articles", "item": "https://aidesignlab.cc#articles"},
+      {"@type": "ListItem", "position": 3, "name": "GPT Image 2 Logo & Icon Design"}
+    ]
+  }
+  </script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "GPT Image 2 Logo & Icon Series — Can AI Design Your Brand?",
-    "description": "Tested 8 logo and icon generation scenarios with GPT Image 2. Here's the honest truth: AI can explore directions, but consistency is still the weak point.",
+    "headline": "GPT Image 2 Logo & Icon Design: 8 Test Cases",
+    "description": "Tested 8 logo and icon scenarios with GPT Image 2. AI can explore directions, but consistency is still the weak point.",
     "image": "https://aidesignlab.cc/og-image.jpg",
     "author": {
-      "@type": "Organization",
-      "name": "AI Design Lab"
+      "@type": "Person",
+      "name": "Long Yu (龙御)",
+      "url": "https://longyu2037.com",
+      "jobTitle": "UI Designer"
     },
     "publisher": {
       "@type": "Organization",
       "name": "AI Design Lab",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://aidesignlab.cc/og-image.jpg"
-      }
+      "url": "https://aidesignlab.cc",
+      "logo": {"@type": "ImageObject", "url": "https://aidesignlab.cc/og-image.jpg"}
     },
     "datePublished": "2026-05-07",
-    "dateModified": "2026-05-07",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://aidesignlab.cc/gpt-image-2-logo-icon.html"
-    }
+    "dateModified": "2026-05-08",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://aidesignlab.cc/gpt-image-2-logo-icon.html"},
+    "articleSection": "AI Design Tutorials",
+    "keywords": ["GPT Image 2", "logo design AI", "icon design", "AI brand identity", "AI design tools"],
+    "wordCount": 2200,
+    "timeRequired": "PT10M",
+    "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["article h1", "article .lead", "article h2"]}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can GPT Image 2 design professional logos?",
+        "acceptedAnswer": {"@type": "Answer", "text": "GPT Image 2 works well for logo concept exploration but struggles with consistency across variations. It scores 3.5/5 for logo design. Best for initial brainstorming and mood boards, not final production files."}
+      },
+      {
+        "@type": "Question",
+        "name": "What logo styles does GPT Image 2 handle best?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Geometric logos (4.0/5), minimalist wordmarks (3.8/5), and abstract marks (3.5/5) work best. It struggles with detailed illustration logos and consistent typography in wordmarks."}
+      },
+      {
+        "@type": "Question",
+        "name": "How to get consistent logo variations?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Use reference images in your prompt, specify the exact style you want (geometric/minimalist/flat), and request multiple variations in a single prompt. Always refine results in design software for production use."}
+      },
+      {
+        "@type": "Question",
+        "name": "Is GPT Image 2 good for app icons?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes, GPT Image 2 handles app icons reasonably well (3.5/5). It can generate clean, simple icon concepts. For production, convert to vector format and ensure scalability across all required sizes."}
+      }
+    ]
   }
   </script>
 
@@ -94,6 +137,10 @@
     .badge-pass { background: rgba(16,185,129,0.15); color: var(--green); }
     .badge-partial { background: rgba(245,158,11,0.15); color: var(--yellow); }
     .badge-fail { background: rgba(248,113,113,0.15); color: var(--red); }
+    .case-image { margin: 1.5rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .case-image img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .case-image img:hover { transform: scale(1.02); }
+
     .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
     .case-notes:last-child { margin-bottom: 0; }
 
@@ -178,6 +225,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a "Settings" line icon with 2px stroke weight, rounded line caps, designed within a 24x24px grid, clean modern minimalist style, transparent background PNG</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-01-line-icon.png" alt="GPT Image 2 generated line icon for Settings" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result">
             <span class="result-badge badge-pass">PASS</span>
@@ -198,6 +248,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a set of 5 e-commerce app bottom navigation icons: Home, Categories, Cart, Favorites, Profile. Style: filled icons (not outlined). Primary color #ff6b35, inactive state gray #ccc. All 5 icons must have consistent visual weight. Displayed on one canvas.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-02-filled-icons.png" alt="GPT Image 2 generated e-commerce navigation icons" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
@@ -220,6 +273,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a brand logo for an AI design tool company called "PixelMind". Tech-forward, modern, minimalist. Colors: blue primary #1890ff, green accent #52c41a. Concept: combine "pixel" and "brain." Show logo plus 4 application scenarios: website header, app icon, business card, t-shirt print.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-03-brand-logo.png" alt="GPT Image 2 generated PixelMind brand logo" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result">
             <span class="result-badge badge-pass">PASS</span>
@@ -240,6 +296,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a "Four Seasons" icon set, 4 icons: Spring (sprout), Summer (sun), Autumn (falling leaf), Winter (snowflake). Strictly unified visual language across all 4. Each uses seasonal representative colors: Spring (green), Summer (red/orange), Autumn (yellow/brown), Winter (blue/white). Stroke weight, corner radius, and detail density must be identical. Arranged on one canvas.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-04-season-icons.png" alt="GPT Image 2 generated Four Seasons icon set" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
@@ -262,6 +321,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a "home" icon in 4 different styles: (1) Line icon, 2px stroke, rounded; (2) Filled icon, same shape as line version; (3) Hand-drawn illustration style, childlike feel, warm and imprecise; (4) 3D isometric illustration, soft shadows, rounded form. All on one canvas for comparison.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-05-multi-style.png" alt="GPT Image 2 generated home icon in 4 styles" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result">
             <span class="result-badge badge-pass">PASS</span>
@@ -282,6 +344,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a transparent background "camera" icon. Style: filled icon, blue primary #1890ff. Details: camera lens has glossy reflection, shutter button has recessed feel. Size: 1024x1024px, high resolution.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-06-camera-icon.png" alt="GPT Image 2 generated camera icon with transparent background" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">
@@ -304,6 +369,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Apply this logo to 3 real-world scenarios, arranged on one showcase canvas: (1) Business card — white card, logo top-left; (2) T-shirt — white t-shirt, logo on chest; (3) Website header — dark background #1a1a2e, logo left side. Logo color adaptation must be correct in each scenario, no distortion.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-07-logo-scenarios.png" alt="GPT Image 2 logo application scenarios" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result">
             <span class="result-badge badge-pass">PASS</span>
@@ -324,6 +392,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Design a "upload" function icon strictly following 24x24px grid specs: 24x24px canvas, 2px padding (actual icon area 20x20px). Style: 2px stroke, rounded caps. Shape: arrow pointing up, horizontal line below (representing upload/send to cloud). Alignment: strictly centered on grid center lines. Output: showcase image comparing grid + icon for inspection.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/logo-08-grid-icon.png" alt="GPT Image 2 generated grid-compliant upload icon" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result">

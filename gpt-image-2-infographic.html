@@ -85,6 +85,10 @@
     .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
     .case-notes:last-child { margin-bottom: 0; }
 
+    .case-image { margin: 1.5rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .case-image img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .case-image img:hover { transform: scale(1.02); }
+
     .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
     .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
     .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
@@ -161,6 +165,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a data comparison bar chart. Title: AI Tool User Growth 2020-2025 (Unit: 100M). Data: 2020: 120M, 2021: 250M, 2022: 480M, 2023: 830M, 2024: 1.56B, 2025: 2.8B (forecast). Requirements: Colors: gradient blue (#1890ff to #52c41a); Style: modern, clean, suitable for PPT insertion; Labels: each bar shows specific value above; Size: 16:9, high-res.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-01-process-flow.png" alt="GPT Image 2 generated AI user growth bar chart" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Visual: Good · Data Precision: Needs Verification</span></div>
           <p class="case-notes"><strong>What worked:</strong> Bar chart generated. 6 bars present, gradient blue correct. Values labeled above bars.</p>
@@ -175,6 +182,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "user registration flowchart." Steps: (1) Start (user clicks register); (2) Enter phone number; (3) Receive verification code (decision: code correct? — Yes: next; No: re-enter, loop); (4) Set password; (5) Select interest tags; (6) Complete registration (end). Requirements: Style: rounded rectangles (process steps), diamonds (decision nodes); Colors: blue (#1890ff), decision nodes orange (#fa8c16); Arrows: clearly labeled flow direction; Style: clean, professional, suitable for product documentation; Size: horizontal wide image, suitable for document insertion.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-02-comparison-chart.png" alt="GPT Image 2 generated user registration flowchart" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Structure: Good · Decision Arrows: Unclear</span></div>
@@ -191,6 +201,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate an "AI Development History" timeline. Timeline: 1950: Turing Test proposed; 1956: Dartmouth Conference, AI discipline born; 1997: IBM Deep Blue beats chess champion; 2012: AlexNet wins ImageNet, deep learning rises; 2016: AlphaGo beats Lee Sedol; 2022: ChatGPT released, LLM era begins; 2026: GPT Image 2 released, multimodal AI matures. Requirements: Style: horizontal timeline, events alternately above/below axis; Colors: tech blue (#1890ff), important nodes in red; Style: illustration feel, suitable for blog long-image; Size: horizontal wide (1200px width).</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-03-timeline.png" alt="GPT Image 2 generated AI development history timeline" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Narrative: Good · Density: Crowded for Many Events</span></div>
           <p class="case-notes"><strong>What worked:</strong> Timeline generated. All 7 time nodes present, positions roughly correct.</p>
@@ -205,6 +218,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate an "Internet Company Org Chart." Hierarchy: Top: CEO; Second level: CTO, CPO, COO; Third level (under CTO): Frontend team, Backend team, AI team, QA team; Third level (under CPO): UI design, User research, Data analysis; Third level (under COO): Marketing, Operations, Customer service. Requirements: Style: tree structure, clear hierarchy; Colors: top dark blue (#1a1a2e), middle blue (#1890ff), base light blue (#e6f7ff); Lines: clearly show reporting relationships; Style: professional, clean, suitable for company internal documents; Size: vertical long-image.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-04-statistics-1.png" alt="GPT Image 2 generated internet company org chart" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Structure: Good · Large Orgs: Crowded</span></div>
@@ -221,6 +237,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "Designer Work Time Distribution" pie chart. Data: Requirement communication: 15%; Inspiration exploration: 20%; Design execution: 40%; Revisions: 20%; Other: 5%. Requirements: Colors: 5 soft colors (not jarring); Labels: each sector shows name and percentage; Style: slight 3D effect; Style: modern, clean; Size: square, suitable for PPT insertion.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-05-statistics-2.png" alt="GPT Image 2 generated designer work time distribution pie chart" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Proportions: Rough · Small Sectors: Hard to Read</span></div>
           <p class="case-notes"><strong>What worked:</strong> Pie chart generated. All 5 sectors present. Soft colors.</p>
@@ -235,6 +254,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "GPT-4 vs Claude vs Gemini" feature comparison table. Comparison dimensions: Model size (parameter scale); Multilingual support; Code capability; Image generation; Price (API). Requirements: Style: table, 3 columns (GPT-4, Claude, Gemini); Colors: header dark blue (#1a1a2e), odd rows light gray (#fafafa), even rows white; Labels: each dimension's comparison shown with stars indicating strength; Style: professional, clear, suitable for report insertion; Size: horizontal, suitable for A4 print.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-06-hierarchy.png" alt="GPT Image 2 generated GPT-4 vs Claude vs Gemini comparison table" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Format: Good · Data Accuracy: Check Required</span></div>
@@ -251,6 +273,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "How to Use AI to Generate UI" 6-step tutorial illustration. Steps: (1) Prepare requirement description; (2) Select AI tool (GPT Image 2, Midjourney, etc.); (3) Write prompt (describe layout, colors, style); (4) Generate draft (AI outputs interface); (5) Human optimize (adjust details in Figma); (6) Deliver for use (to developer or client). Requirements: Style: each step a card with illustration; Colors: step cards gradient background (light blue to white); Arrows: clearly label step sequence; Style: modern, illustration feel, suitable for blog tutorials; Size: vertical long-image (suitable for mobile reading).</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-07-geographic.png" alt="GPT Image 2 generated AI UI generation 6-step tutorial" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Flow: Clear · Step Illustrations: Variable Quality</span></div>
           <p class="case-notes"><strong>What worked:</strong> 6-step tutorial illustration generated. Each step a card with illustration.</p>
@@ -265,6 +290,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate an "AI's Impact on UI Designers" SWOT analysis diagram. Four quadrants: Strengths: fast inspiration generation, reduce repetitive work; Weaknesses: detail precision insufficient, weak consistency control; Opportunities: new roles emerging (AI trainers, prompt engineers); Threats: junior designer positions may shrink. Requirements: Style: four-quadrant layout, each quadrant a color block; Colors: Strengths (green), Weaknesses (yellow), Opportunities (blue), Threats (red); Labels: each quadrant lists 2-3 bullet points; Style: professional, clean, suitable for report PPT; Size: square, suitable for PPT insertion.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/info-08-dashboard.png" alt="GPT Image 2 generated AI impact on UI designers SWOT analysis" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Precision: Average</span></div>

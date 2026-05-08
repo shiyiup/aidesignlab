@@ -86,6 +86,10 @@
     .case-notes { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 0.75rem; }
     .case-notes:last-child { margin-bottom: 0; }
 
+    .case-image { margin: 1.5rem; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+    .case-image img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
+    .case-image img:hover { transform: scale(1.02); }
+
     .summary-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.9rem; }
     .summary-table th { text-align: left; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-3); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
     .summary-table td { padding: 0.75rem 1rem; border: 1px solid var(--border); color: var(--text-2); }
@@ -163,6 +167,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a 618 sale e-commerce banner. Size: 750x300px (mobile banner standard). Requirements: Main title: "618 Mid-Year Sale" (centered, super large, bold); Subtitle: "50% Off Storewide, Starts Tonight 8PM" (centered, medium); Background: red primary (#e74c3c), gold decorative elements; Visual elements: gift boxes, ribbons, countdown timer; Urgency: lively shopping atmosphere. Output: high-res, suitable for mobile display.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-08-template.png" alt="GPT Image 2 generated 618 promotional banner" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text: Accurate · Visual Quality: Average</span></div>
           <p class="case-notes"><strong>What worked:</strong> Banner generated. Red background with gold 618 atmosphere correct. Main title "618 Mid-Year Sale" text rendered accurately, no gibberish. Subtitle also rendered correctly.</p>
@@ -177,6 +184,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a wireless earbuds product hero image. Requirements: Background: pure white (#ffffff); Product: in-ear wireless bluetooth earbuds, white version; Lighting: professional e-commerce product photography lighting with highlights and reflections; Angle: 45-degree top-down, showing earbuds and charging case; Quality: high-end, refined, like Apple.com product photos; No text, no watermark, no shadow (pure white background); Output: transparent background PNG, 1024x1024px.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-09-multi-product.png" alt="GPT Image 2 generated wireless earbuds product photo" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Concept: Good · Detail: Needs Professional Photo</span></div>
@@ -193,6 +203,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "50% Off Limited Time" promotional poster. Size: 750x1000px (mobile vertical). Main title: "50% Off" (large, centered, eye-catching); Subtitle: "Only 3 Days, Miss It Wait a Year" (medium, creating urgency); Person: young Asian woman unboxing delivery, surprised expression; Product: cosmetics peeking from delivery box (lipstick, face cream); Colors: pink primary (#ff6b9d), female shopping atmosphere; Bottom: brand logo space reserved (blank, manually added later); Output: high-res, suitable for WeChat Moments/Xiaohongshu sharing.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-02-banner-2.png" alt="GPT Image 2 generated promotional poster with model" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Text: Accurate · Atmosphere: Good</span></div>
           <p class="case-notes"><strong>What worked:</strong> Poster generated. Person, product, title all present. "50% Off" text rendered accurately. Pink atmosphere correct.</p>
@@ -207,6 +220,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a product lifestyle scene image. Subject: white ceramic coffee mug with simple blue line decoration on body. Scene: Nordic-style office desk. Desktop: light wood color, tidy. Background: white wall with potted plants (monstera). Lighting: natural light from left window, soft. Atmosphere: serene, quality feel, suitable for lifestyle e-commerce. View: eye-level, shallow depth of field (background slightly blurred). Output: 3:4 ratio, suitable for e-commerce detail page display.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-01-banner-1.png" alt="GPT Image 2 generated coffee mug lifestyle scene" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Scene: Excellent · Atmosphere: Strong</span></div>
           <p class="case-notes"><strong>What worked:</strong> Scene image generated. Coffee mug, Nordic desk, potted plants — all present. Lighting and atmosphere feel good. Truly has "lifestyle e-commerce" refined sense.</p>
@@ -220,6 +236,12 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Reference this model photo. Change the model into a new summer collection dress. Requirements: Dress style: fresh, floral, suitable for summer; Color: white base with small florals (blue/green tones); Keep model's original pose, expression, lighting; Only change clothes, not background, hair, or face; Output: high-res, natural, not overdone.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-03-product-shot-1.png" alt="GPT Image 2 original model photo" loading="lazy">
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-04-product-shot-2.png" alt="GPT Image 2 model outfit swap result" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-fail">LIMITED</span><span style="font-size:0.9rem;color:var(--text-2);">Precision: Low · Good for: Creative Exploration</span></div>
@@ -236,6 +258,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a skincare set display image with 3 products: (1) Essence (dropper bottle, transparent); (2) Face cream (round jar, white with gold lid); (3) Face mask (individual packaging, 5 pieces). Requirements: Layout: 3 products neatly arranged, top-down angle; Background: light pink (#fce4ec), gentle atmosphere; Lighting: soft, showing product texture; No text, no watermark; Output: square (1:1), suitable for e-commerce detail pages or social media.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-05-promo-1.png" alt="GPT Image 2 generated skincare set display" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Layout: Good · Precision: Average</span></div>
           <p class="case-notes"><strong>What worked:</strong> All 3 products generated. Neatly arranged, top-down angle correct.</p>
@@ -250,6 +275,9 @@
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a "user review" style lipstick swatch photo. Scene: natural lighting, hand swatch (lipstick applied on back of hand); Lipstick shade: nude/mauve (daily style); Atmosphere: real, not overdone, like an ordinary user taking photo to share; Quality: mobile photo quality (not professional photography); Lighting: natural light, slightly overexposed (realistic feel); No text, no watermark; Output: 4:3 ratio, suitable for Xiaohongshu/e-commerce platform review section.</div>
         </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-06-promo-2.png" alt="GPT Image 2 generated lipstick swatch review style" loading="lazy">
+        </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-partial">PARTIAL</span><span style="font-size:0.9rem;color:var(--text-2);">Texture: Good · "Real" Feel: 80%</span></div>
           <p class="case-notes"><strong>What worked:</strong> Swatch photo generated. Back of hand, lipstick, natural light — skin texture and quality hard to distinguish from real.</p>
@@ -263,6 +291,9 @@
         <div class="case-prompt">
           <div class="case-prompt-label">Prompt</div>
           <div class="case-prompt-text">Generate a brand story long-image. Theme: "From Coffee Bean to a Cup of Coffee." Size: 750x2000px (mobile long-image). Content in 4 sections: (1) Coffee bean origin (Ethiopia, highland cultivation); (2) Roasting process (medium-light roast, preserving fruit notes); (3) Hand brew process (V60 pour-over, 92-degree water); (4) Finished product (a cup of coffee, latte art pattern). Requirements: Illustration style: hand-drawn feel, warm colors; Text: each section has 8-12 character title (accurately rendered); Narrative feel: like reading a brand story, not hard advertising; Output: long-image, suitable for blog or e-commerce detail page header.</div>
+        </div>
+        <div class="case-image">
+          <img src="images/2026-04/ecom-07-category-banner.png" alt="GPT Image 2 generated coffee brand story long-image" loading="lazy">
         </div>
         <div class="case-body">
           <div class="case-result"><span class="result-badge badge-pass">PASS</span><span style="font-size:0.9rem;color:var(--text-2);">Narrative: Good · Consistency: Average</span></div>
